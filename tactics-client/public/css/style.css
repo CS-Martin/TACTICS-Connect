@@ -13,6 +13,15 @@ body {
     /* overflow-y: hidden; */
 }
 
+/* Nav */
+.modalStyle {
+    background-color: #1c1c1c;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
 img {
     width: 8%;
     height: auto;
@@ -35,7 +44,6 @@ img {
     margin-left: 120px;
     margin-right: 120px;
     position: relative;
-    overflow: hidden;
 }
 
 
@@ -48,7 +56,6 @@ img {
 .navbar-nav .active {
     font-weight: bold;
     border-bottom: white solid 1px;
-    border-radius: 10%;
 }
 
 .navbar-scroll {

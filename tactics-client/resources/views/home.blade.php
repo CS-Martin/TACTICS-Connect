@@ -5,7 +5,7 @@
     
     <div class="container-fluid">
         <div>
-            <img src="{{ asset('img/svg/fp-header-black-svg.svg') }}" class="black-header" alt="">
+            {{-- <img src="{{ asset('img/svg/fp-header-black-svg.svg') }}" class="black-header" alt=""> --}}
             <img src="{{ asset('img/svg/logo-circle.svg') }}" class="bg-circle" alt="">
             <img src="{{ asset('img/tactics-logo-trans.png') }}" class="bg-tactics-logo" alt="">
             <img src="{{ asset('img/svg/Rectangle 5.svg') }}" class="bg-left-1" alt="">
@@ -22,25 +22,5 @@
 </div>
 <x-announcements></x-announcements>
 @include('about')
-{{-- @include('create') --}}
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 @endsection
