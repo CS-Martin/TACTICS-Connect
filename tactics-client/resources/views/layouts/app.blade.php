@@ -64,206 +64,221 @@
                                     <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
                                         aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
-                                            <div class="modal-content modalStyle">
+                                            <div class="modal-content modal-color">
                                                 <div class="modal-header">
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
 
-                                                <div class="modal-body">
-
+                                                <div class="modal-body container">
                                                     <form method="POST" action="{{ route('login') }}">
                                                         @csrf
 
-                                                        <div class="row mb-3">
-                                                            <div class="col-md-6 input-icons">
-                                                                <input id="email" type="email"
-                                                                    placeholder="\f007"
-                                                                    class="form-control @error('email') is-invalid @enderror"
-                                                                    name="email" value="{{ old('email') }}" required
-                                                                    autocomplete="email" autofocus>
-
-                                                                @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
+                                                        <div class="row">
+                                                            {{-- Signin image --}}
+                                                            <div
+                                                                class="col d-flex justify-content-center align-items-center">
+                                                                <img src="{{ asset('img/Saly-43.png') }}"
+                                                                    class="signin-saly" alt="">
                                                             </div>
-                                                        </div>
 
-                                                        <div class="row mb-3">
+                                                            <div class="col me-4">
+                                                                <div class="row mb-3">
+                                                                    <div class="text-white">
+                                                                        <h2>Login</h2>
+                                                                        <p class="signin-subheader">Welcome back!</p>
+                                                                    </div>
+                                                                    <div class="col-md-6 input-hero">
+                                                                        <input id="email" type="email"
+                                                                            placeholder="Username"
+                                                                            class="form-control @error('email') is-invalid @enderror"
+                                                                            name="email" value="{{ old('email') }}"
+                                                                            required autocomplete="email" autofocus>
 
+                                                                        @error('email')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
 
-                                                            <div class="col-md-6">
-                                                                <input id="password" type="password" placeholder="Password"
-                                                                    class="form-control @error('password') is-invalid @enderror"
-                                                                    name="password" required
-                                                                    autocomplete="current-password">
+                                                                <div class="row mb-3">
+                                                                    <div class="col-md-6 input-hero">
+                                                                        <input id="password" type="password"
+                                                                            placeholder="Password"
+                                                                            class="form-control @error('password') is-invalid @enderror"
+                                                                            name="password" required
+                                                                            autocomplete="current-password">
 
-                                                                @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
+                                                                        @error('password')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
 
-                                                        <div class="row mb-3">
-                                                            <div class="col-md-6 offset-md-4">
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="remember" id="remember"
-                                                                        {{ old('remember') ? 'checked' : '' }}>
+                                                                <div class="row mb-3">
+                                                                    <div class="">
+                                                                        <div
+                                                                            class="form-check signin-subheader d-flex justify-content-between">
+                                                                            <div>
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" name="remember"
+                                                                                    id="remember"
+                                                                                    {{ old('remember') ? 'checked' : '' }}>
 
-                                                                    <label class="form-check-label" for="remember">
-                                                                        {{ __('Remember Me') }}
-                                                                    </label>
+                                                                                <label
+                                                                                    class="form-check-label d-inline-block"
+                                                                                    for="remember">
+                                                                                    {{ __('Remember Me') }}
+                                                                                </label>
+                                                                            </div>
+
+                                                                            <div class="d-inline-block ">
+                                                                                @if (Route::has('password.request'))
+                                                                                    <a class=""
+                                                                                        href="{{ route('password.request') }}">
+                                                                                        {{ __('Forgot Your Password?') }}
+                                                                                    </a>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mb-0">
+                                                                    <div class="">
+                                                                        <button type="submit" class="login-btn">
+                                                                            {{ __('Login') }}
+                                                                        </button>
+
+                                                                        <p class="subtext-color mt-2">Doesn't have an
+                                                                            account yet? <a class="textlink-color"
+                                                                                data-bs-target="#exampleModalToggle2"
+                                                                                data-bs-toggle="modal">Register</a>
+                                                                        </p>
+
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="row mb-0">
-                                                            <div class="col-md-8 offset-md-4">
-                                                                <button type="submit" class="btn btn-primary">
-                                                                    {{ __('Login') }}
-                                                                </button>
-
-                                                                @if (Route::has('password.request'))
-                                                                    <a class="btn btn-link"
-                                                                        href="{{ route('password.request') }}">
-                                                                        {{ __('Forgot Your Password?') }}
-                                                                    </a>
-                                                                @endif
-                                                                <a class="nav-link"
-                                                                    href="{{ route('register') }}">{{ __('Register') }}</a>
-                                                            </div>
                                                         </div>
                                                     </form>
-                                                </div>
-
-                                                {{-- Register --}}
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2"
-                                                        data-bs-toggle="modal">Open second modal</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    {{-- Register modal overlay --}}
                                     <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
                                         aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                                            <div class="modal-content">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg ">
+                                            <div class="modal-content modal-color">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2
-                                                    </h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <div class="container">
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-md-8">
-                                                                <div class="card">
-                                                                    <div class="card-header">{{ __('Register') }}</div>
 
-                                                                    <div class="card-body">
-                                                                        <form method="POST"
-                                                                            action="{{ route('register') }}">
-                                                                            @csrf
+                                                <div class="modal-body container">
+                                                    <form method="POST" action="{{ route('register') }}">
+                                                        @csrf
 
-                                                                            <div class="row mb-3">
-                                                                                <label for="name"
-                                                                                    class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                                                        <div class="row">
 
-                                                                                <div class="col-md-6">
-                                                                                    <input id="name" type="text"
-                                                                                        class="form-control @error('name') is-invalid @enderror"
-                                                                                        name="name"
-                                                                                        value="{{ old('name') }}"
-                                                                                        required autocomplete="name"
-                                                                                        autofocus>
+                                                            <div
+                                                                class="col d-flex justify-content-center align-items-center">
+                                                                <img src="{{ asset('img/Saly-13.png') }}"
+                                                                    class="signin-saly" alt="">
+                                                            </div>
 
-                                                                                    @error('name')
-                                                                                        <span class="invalid-feedback"
-                                                                                            role="alert">
-                                                                                            <strong>{{ $message }}</strong>
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
+                                                            <div class="col me-4">
+                                                                <div class="text-white">
+                                                                    <h2>Register</h2>
+                                                                    <p class="signin-subheader">Create an account...</p>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    {{-- Name input field --}}
+                                                                    <div class="col-md-6 input-hero register-input-hero">
+                                                                        <input id="name" type="text"
+                                                                            placeholder="Name"
+                                                                            class="form-control @error('name') is-invalid @enderror"
+                                                                            name="name" value="{{ old('name') }}"
+                                                                            required autocomplete="name" autofocus>
 
-                                                                            <div class="row mb-3">
-                                                                                <label for="email"
-                                                                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                                                        @error('name')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
 
-                                                                                <div class="col-md-6">
-                                                                                    <input id="email" type="email"
-                                                                                        class="form-control @error('email') is-invalid @enderror"
-                                                                                        name="email"
-                                                                                        value="{{ old('email') }}"
-                                                                                        required autocomplete="email">
+                                                                <div class="row mb-3">
 
-                                                                                    @error('email')
-                                                                                        <span class="invalid-feedback"
-                                                                                            role="alert">
-                                                                                            <strong>{{ $message }}</strong>
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
+                                                                    {{-- Email address input field --}}
+                                                                    <div class="col-md-6 input-hero register-input-hero">
+                                                                        <input id="email" type="email"
+                                                                            placeholder="Email Address"
+                                                                            class="form-control @error('email') is-invalid @enderror"
+                                                                            name="email" value="{{ old('email') }}"
+                                                                            required autocomplete="email">
 
-                                                                            <div class="row mb-3">
-                                                                                <label for="password"
-                                                                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                                                        @error('email')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
 
-                                                                                <div class="col-md-6">
-                                                                                    <input id="password" type="password"
-                                                                                        class="form-control @error('password') is-invalid @enderror"
-                                                                                        name="password" required
-                                                                                        autocomplete="new-password">
+                                                                <div class="row mb-3">
 
-                                                                                    @error('password')
-                                                                                        <span class="invalid-feedback"
-                                                                                            role="alert">
-                                                                                            <strong>{{ $message }}</strong>
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
+                                                                    {{-- Password input field --}}
+                                                                    <div class="col-md-6 input-hero register-input-hero">
+                                                                        <input id="password" type="password"
+                                                                            placeholder="Password"
+                                                                            class="form-control @error('password') is-invalid @enderror"
+                                                                            name="password" required
+                                                                            autocomplete="new-password">
 
-                                                                            <div class="row mb-3">
-                                                                                <label for="password-confirm"
-                                                                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                                                                        @error('password')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
 
-                                                                                <div class="col-md-6">
-                                                                                    <input id="password-confirm"
-                                                                                        type="password"
-                                                                                        class="form-control"
-                                                                                        name="password_confirmation"
-                                                                                        required
-                                                                                        autocomplete="new-password">
-                                                                                </div>
-                                                                            </div>
+                                                                <div class="row mb-3 ">
 
-                                                                            <div class="row mb-0">
-                                                                                <div class="col-md-6 offset-md-4">
-                                                                                    <button type="submit"
-                                                                                        class="btn btn-primary">
-                                                                                        {{ __('Register') }}
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
+                                                                    {{-- Password confirm input field --}}
+                                                                    <div class="col-md-6 input-hero register-input-hero">
+                                                                        <input id="password-confirm" type="password"
+                                                                            placeholder="Confirm password"
+                                                                            class="form-control"
+                                                                            name="password_confirmation" required
+                                                                            autocomplete="new-password">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mb-0">
+                                                                    <div class="">
+                                                                        <button type="submit" class="register-btn">
+                                                                            {{ __('Register') }}
+                                                                        </button>
+
+                                                                        <p class="subtext-color mt-2">Already have an account? <a class="textlink-color"
+                                                                                data-bs-target="#exampleModalToggle"
+                                                                                data-bs-toggle="modal">Login</a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
 
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle"
-                                                        data-bs-toggle="modal">Login</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -276,6 +291,7 @@
                                 </li>
                             @endif
 
+                            {{-- Nav logout --}}
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     {{-- Comment this out for a while, still exploring :>> --}}
@@ -331,7 +347,7 @@
     });
 </script>
 <style scoped>
-    .modalStyle {
+    .modal-color {
         background-color: #1c1c1c;
     }
 
@@ -339,13 +355,49 @@
         border-bottom: none;
     }
 
-    .input-icons i {
-        position: absolute;
+    .signin-subheader {
+        color: #868686;
     }
 
-    .icon {
+    .register-saly,
+    .signin-saly {
+        width: 90%;
+        height: auto;
+    }
+
+    .input-hero {
+        width: 100%;
+    }
+
+    .input-hero>.form-control {
+        padding: 15px;
+    }
+
+    .register-input-hero>.form-control {
         padding: 10px;
-        min-width: 40px;
+    }
+
+    .modal-lg {
+        --bs-modal-width: 920px;
+    }
+
+    .login-btn {
+        background-color: #4BA4A8;
+        width: 100%;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .register-btn {
+        background-color: #4BA4A8;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .textlink-color:hover {
+        color: #4BA4A8;
+        cursor: pointer;
     }
 </style>
 

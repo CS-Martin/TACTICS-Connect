@@ -13,6 +13,15 @@ body {
     /* overflow-y: hidden; */
 }
 
+.textlink-color {
+    color: #4BA4A8;
+    text-decoration: none;
+}
+
+.subtext-color {
+    color: #868686;
+}
+
 /* Nav */
 .modalStyle {
     background-color: #1c1c1c;
