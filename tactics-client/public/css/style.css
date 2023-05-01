@@ -57,11 +57,6 @@ body {
     transition: background-color 0.5s ease-in-out;
 }
 
-.navbar-nav .active {
-    font-weight: bold;
-    border-bottom: white solid 1px;
-}
-
 .navbar-scroll {
     background-color: rgba(0, 0, 0, 0.74);
 }

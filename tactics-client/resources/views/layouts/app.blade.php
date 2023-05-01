@@ -44,11 +44,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ms-auto gap-5 align-items-center">
-                        <li class="nav-item "><a href="/"
+                        <li class="nav-item "><a href="#home_section"
                                 class="nav-link text-white {{ request()->is('/') ? 'active' : '' }}">Home</a>
                         </li>
-                        <li class="nav-item "><a href="#"
-                                class="nav-link text-white {{ request()->is('about') ? 'active' : '' }}">About Us</a>
+                        <li class="nav-item "><a href="#about_section"
+                                class="nav-link text-white {{ request()->is('/about') ? 'active' : '' }}">About Us</a>
                         </li>
                         <li class="nav-item "><a href="#"
                                 class="nav-link text-white {{ request()->is('officers') ? 'active' : '' }}">Officers</a>
@@ -335,7 +335,18 @@
     </div>
 </body>
 <script>
-    // Function to show nav-bar logo onscroll 
+    // function to scroll to a section with sepecified tag when linked is clicked
+    $('a[href^="#"]').on('click', function(event) {
+        var target = $(this.getAttribute('href'));
+        if( target.length ) {
+            event.preventDefault();
+            $('html, body').stop().animate({
+                scrollTop: target.offset().top
+            }, 1000);
+        }
+    });
+    
+    // Function to show nav-bar logo onscroll
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
 
@@ -407,6 +418,11 @@
     .textlink-color:hover {
         color: #4BA4A8;
         cursor: pointer;
+    }
+
+    .active {
+        font-weight: bold;
+        border-bottom: white solid 1px;
     }
 </style>
 
