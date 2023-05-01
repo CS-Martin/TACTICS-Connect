@@ -88,6 +88,8 @@
                                                                         <h2>Login</h2>
                                                                         <p class="signin-subheader">Welcome back!</p>
                                                                     </div>
+                                                                    
+                                                                    {{-- Email input field --}}
                                                                     <div class="col-md-6 input-hero">
                                                                         <input id="email" type="email"
                                                                             placeholder="Username"
@@ -103,6 +105,7 @@
                                                                     </div>
                                                                 </div>
 
+                                                                {{-- Password input field --}}
                                                                 <div class="row mb-3">
                                                                     <div class="col-md-6 input-hero">
                                                                         <input id="password" type="password"
