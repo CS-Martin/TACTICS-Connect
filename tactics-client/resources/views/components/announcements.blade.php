@@ -1,4 +1,4 @@
-<div class="announcement-container d-flex align-items-center">
+<div class="announcement-container d-flex align-items-center" id="announcement_section">
     <!-- People find pleasure in different ways. I find it in keeping my mind clear. - Marcus Aurelius -->
     <div class="container-fluid blackboard">
         <div class="board">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="home-container">
+    <div class="home-container" id="home_section">
         <div class="container-fluid">
             <div>
                 <img src="{{ asset('img/svg/logo-circle.svg') }}" class="bg-circle" alt="">
@@ -15,8 +15,7 @@
                 <p class="subheader-tactics col-6 lh-sm fw-lighter">The Ateneo Consortium of Technological Information and
                     Computing Sciences</p>
                 <button class="btn btn-dark p-3 px-5">CONTACT US</button>
-                <button class="ms-4 btn btn-link text-white text-hide-underline text-underline-hover">Activities<i
-                        class="fa-solid fa-arrow-right ms-3 border border-1 p-2 rounded-5"></i></button>
+                <button class="ms-4 btn btn-link text-white text-hide-underline text-underline-hover" onclick="scrollToSection('announcement_section')">Latest News</button>
             </div>
         </div>
     </div>
@@ -24,6 +23,17 @@
     <x-announcements></x-announcements>
     @include('about')
 @endsection
+
+<script>
+    function scrollToSection(sectionId) {
+    var target = $('#' + sectionId);
+        if (target.length) {
+            $('html, body').animate({
+            scrollTop: target.offset().top
+            }, 1000);
+        }
+    }
+</script>
 
 <style scoped>
     .home-container {

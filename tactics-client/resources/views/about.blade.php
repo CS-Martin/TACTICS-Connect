@@ -1,4 +1,4 @@
-<div class="about-us-container d-flex align-items-center p-5">
+<div class="about-us-container d-flex align-items-center p-5" id="about_section">
     <div class="container-fluid ">
         <div class="d-flex container">
             <img src="{{ asset('img/tactics-logo-trans.png') }}" class="abt-us-logo" alt="">
