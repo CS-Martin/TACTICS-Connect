@@ -32,7 +32,7 @@
             <div class="container-fluid">
                 {{-- should be visible when scrolling --}}
                 <a class="navbar-brand text-white logo align-items-center" href="{{ url('/') }}">
-                    <img src="{{ asset('img/tactics-logo-trans.png') }}" class="p-1" alt="">
+                    <img src="{{ asset('img/tactics-logo-trans.png') }}" class="p-1 tactics-logo" alt="">
                     TACTICS
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -88,7 +88,7 @@
                                                                         <h2>Login</h2>
                                                                         <p class="signin-subheader">Welcome back!</p>
                                                                     </div>
-                                                                    
+
                                                                     {{-- Email input field --}}
                                                                     <div class="col-md-6 input-hero">
                                                                         <input id="email" type="email"
@@ -272,7 +272,8 @@
                                                                             {{ __('Register') }}
                                                                         </button>
 
-                                                                        <p class="subtext-color mt-2">Already have an account? <a class="textlink-color"
+                                                                        <p class="subtext-color mt-2">Already have an
+                                                                            account? <a class="textlink-color"
                                                                                 data-bs-target="#exampleModalToggle"
                                                                                 data-bs-toggle="modal">Login</a>
                                                                         </p>
@@ -352,6 +353,11 @@
 <style scoped>
     .modal-color {
         background-color: #1c1c1c;
+    }
+
+    .tactics-logo {
+        width: 8%;
+        height: auto;
     }
 
     .modal-header {

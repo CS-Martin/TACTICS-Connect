@@ -31,11 +31,6 @@ body {
     border-bottom: none;
 }
 
-img {
-    width: 8%;
-    height: auto;
-}
-
 .text-hide-underline {
     text-decoration: none;
 }
@@ -85,16 +80,6 @@ h1 {
 
 .fa-solid {
     border: 10px white;
-}
-
-.black-header {
-    position: absolute;
-    height: 2139.72px;
-    width: 1554.69px;
-    left: 394.74px;
-    top: -682.02px;
-    opacity: 0.90;
-    transform: rotate(-7deg);
 }
 
 .bg-circle {

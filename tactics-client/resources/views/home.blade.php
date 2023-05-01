@@ -4,6 +4,9 @@
     <div class="home-container">
         <div class="container-fluid">
             <div>
+                <div class="black-header-container">
+                    {{-- <img src="{{ asset('img/svg/black-header.svg') }}" class="black-header" alt=""> --}}
+                </div>
                 <img src="{{ asset('img/svg/logo-circle.svg') }}" class="bg-circle" alt="">
                 <img src="{{ asset('img/tactics-logo-trans.png') }}" class="bg-tactics-logo" alt="">
                 <img src="{{ asset('img/svg/Rectangle 5.svg') }}" class="bg-left-1" alt="">
@@ -26,6 +29,14 @@
 @endsection
 
 <style scoped>
+    .black-header-container {
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        top: 0;
+        right: 0;
+    }
+
     .home-container {
         display: flex;
         align-items: center;
