@@ -30,6 +30,7 @@ Auth::routes();
 // Route options();
 // Route::redirect();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/forum', [App\Http\Controllers\ForumController::class, 'index'])->name('forum');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 

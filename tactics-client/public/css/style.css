@@ -4,14 +4,7 @@
 /* Chalk font for the announcements view */
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
 
-body {
-    background: url("../img/fp-bg.png") no-repeat fixed center;
-    background-size: cover !important;
-    height: 100vh;
-    font-family: 'Lexend', sans-serif;
-    /* overflow-x: hidden !important; */
-    /* overflow-y: hidden; */
-}
+
 
 .textlink-color {
     color: #4BA4A8;
