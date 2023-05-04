@@ -330,7 +330,7 @@
         </nav>
 
         <main class="">
-            @yield('content')
+            @yield('home')
         </main>
     </div>
 </body>
@@ -363,12 +363,7 @@
 </script>
 <style scoped>
     body {
-        background: url("../img/fp-bg.png") no-repeat fixed center;
-        background-size: cover !important;
-        height: 100vh;
         font-family: 'Lexend', sans-serif;
-        /* overflow-x: hidden !important; */
-        /* overflow-y: hidden; */
     }
 
     .modal-color {
@@ -432,6 +427,15 @@
     .active {
         font-weight: bold;
         border-bottom: white solid 1px;
+    }
+
+    .navbar {
+        background-color: transparent;
+        transition: background-color 0.5s ease-in-out;
+    }
+
+    .navbar-scroll {
+        background-color: rgba(0, 0, 0, 0.74);
     }
 </style>
 

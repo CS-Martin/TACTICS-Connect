@@ -1,25 +1,23 @@
-@extends('layouts.app')
-@section('content')
-<body>
-    <div class="forum-view">
-        <div class="header-section">
-            <div class="container-fluid">
-                Articles & Discussions
-
-            </div>
-        </div>
+@include('layouts.app')
+<div class="forum-container">
+    <div class="forum-header d-flex">
+        <h2 class="">Articles & Discussions</h2>
+        <button>Create new Post</button> 
     </div>
-</body>
-@endsection
-<style>
-    body {
+
+    <div class=>
+        
+    </div>
+</div>
+
+<style scoped>
+    .forum-container {
         height: 100vh;
         width: 100%;
-        background: #f1f1f1 !important;
-    } 
+        margin: 0;
+    }
 
-    .header-section {
-        margin-top: 100px;
-    } 
-    
+    .forum-header {
+        margin-top: 200px;
+    }
 </style>
