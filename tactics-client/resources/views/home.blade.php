@@ -4,7 +4,7 @@
     <div class="bg-div">
         <img src="{{ url('../img/fp-bg.png') }}" class="home-bg position-absolute position-fixed z-[-100]" alt="">
     </div>
-    <div class="home-container" id="home_section">
+    <div class="home-container px-5" id="home_section">
         <div class="container-fluid">
             <div>
                 <div class="black-header-container">
