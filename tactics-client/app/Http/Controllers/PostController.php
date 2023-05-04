@@ -18,6 +18,14 @@ class PostController extends Controller
         return view('post.index', compact('posts'));
     }
 
+    public function like(Request $request)
+    {
+        $post = Post::find($request->input('post_id'));
+        $post->likes++;
+        $post->save();
+        return response()->json(['success' => true]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -42,7 +50,7 @@ class PostController extends Controller
         ]);
 
         $post = new Post();
-        $post->user_id = $request->user()->id;
+        $post->name = $request->user()->name;
         $post->title = $validatedData['title'];
         $post->body = $validatedData['body'];
         $post->save();
@@ -58,7 +66,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show', compact('post'));     
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -86,6 +94,7 @@ class PostController extends Controller
             'body' => 'required',
         ]);
 
+        $post->name = $request->user()->name;
         $post->title = $validatedData['title'];
         $post->body = $validatedData['body'];
         $post->save();

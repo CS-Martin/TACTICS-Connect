@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Forum;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -14,7 +16,9 @@ class ForumController extends Controller
      */
     public function index()
     {
-        return view('forum'); 
+        $users = User::all();
+        $posts = Post::all();
+        return view('forum', ['posts' => $posts, 'users' => $users]); 
     }
 
     /**
