@@ -42,7 +42,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped>ph
 
     .home-bg {
         height: 100%;
