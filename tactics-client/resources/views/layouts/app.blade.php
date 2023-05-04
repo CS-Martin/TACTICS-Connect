@@ -29,7 +29,7 @@
     <div id="app">
         <nav
             class="navbar navbar-default navbar-fixed-top navbar-expand-md navbar-light fixed-top navbar-scroll align-items-center ">
-            <div class="container-fluid">
+            <div class="container-fluid px-5">
                 {{-- should be visible when scrolling --}}
                 <a class="navbar-brand text-white logo align-items-center" href="{{ url('/') }}">
                     <img src="{{ asset('img/tactics-logo-trans.png') }}" class="p-1 tactics-logo" alt="">
