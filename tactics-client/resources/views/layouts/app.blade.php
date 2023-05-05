@@ -52,11 +52,11 @@
                         <li class="nav-item "><a href="/"
                                 class="nav-link text-white {{ request()->is('/') ? 'active' : '' }}">Home</a>
                         </li>
-                        <li class="nav-item "><a href="#about_section"
-                                class="nav-link text-white {{ request()->is('/about') ? 'active' : '' }}">About Us</a>
-                        </li>
                         <li class="nav-item "><a href="#announcement_section"
                                 class="nav-link text-white {{ request()->is('officers') ? 'active' : '' }}">Announcements</a>
+                        </li>
+                        <li class="nav-item "><a href="#about_section"
+                                class="nav-link text-white {{ request()->is('/about') ? 'active' : '' }}">About Us</a>
                         </li>
                         <li class="nav-item "><a href="/forum"
                                 class="nav-link text-white {{ request()->is('forum') ? 'active' : '' }}">Forum</a>

@@ -3,8 +3,9 @@
 use App\Http\Controllers\ContactUs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ForumController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,15 +37,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/contact-us', [ContactUs::class, 'index'])->name('contact-us');
 Route::get('/forum', [ForumController::class, 'index'])->name('forum');
 Route::match(['GET', 'POST'], '/posts', [PostController::class, 'store'])->name('posts.store');
-Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-Route::get('/posts/create', function () {
-    return view('create-post');
-});
+Route::match(['GET', 'POST'], '/comments', [CommentController::class, 'store'])->name('comment.store');
+Route::get('/forum/comments/{id}', [CommentController::class, 'index'])->name('comment');
+
 Route::put('/like', [PostController::class, 'like'])->name('posts.like');
 Route::put('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
-
-
-
-Route::resource('posts.comments', CommentController::class)->only([
-    'store', 'edit', 'update', 'destroy',
-]);

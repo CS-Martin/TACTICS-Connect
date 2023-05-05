@@ -9,7 +9,8 @@
         </button>
 
         {{-- Modal for creating a post --}}
-        <div class="modal fade" id="createPostModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="createPostModal" tabindex="-1" data-bs-backdrop="static"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -17,7 +18,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                       @include('create-post')
+                        @include('create-post')
                     </div>
                 </div>
             </div>
@@ -49,7 +50,7 @@
                     <!-- profile -->
                     <div class="d-flex">
                         <div class="card-profile ms-3">
-                            <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle"> 
+                            <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle">
                         </div>
 
                         <!-- Title -->
@@ -85,7 +86,9 @@
                                 </div>
                                 <div class="d-flex">
                                     <div class="me-3">
-                                        <button class="p-2 border-0 rounded-pill comment-btn px-4">Comments</button>
+                                        <button class="p-2 border-0 rounded-pill comment-btn px-4"> <a
+                                                href="/forum/comments/{{ $post->id}}">Comment</a>
+                                        </button>
                                     </div>
                                     <div class="">
                                         <button type="submit"
@@ -93,6 +96,12 @@
                                             <i class="fa-solid fa-bookmark"></i></button>
                                     </div>
                                 </div>
+                                @foreach ($post->comments as $comment)
+                                    <div>
+                                        <h3>{{ $comment->name }}</h3>
+                                        <p>{{ $comment->message }}</p>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
