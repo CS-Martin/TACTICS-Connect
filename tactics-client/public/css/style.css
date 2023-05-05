@@ -37,5 +37,14 @@
     transition: opacity 0.5s;
 }
 
-.container-fluid {
+.username-style {
+    color: #4BA4A8;
+}
+
+.gray-text {
+    color: #888888;
+}
+
+.btn-color {
+    background-color: #4BA4A8;
 }

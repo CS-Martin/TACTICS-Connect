@@ -1,28 +1,27 @@
 @extends('layouts.app')
 
 @section('home')
-    <div class="home-container">
-        <img src="{{ url('../img/fp-bg.png') }}" class="position-absolute position-fixed" alt="">
+    <div class="">
+        <img src="{{ url('../img/fp-bg.png') }}" class="home-bg position-absolute position-fixed" alt="">
     </div>
     <div class="home-container px-5" id="home_section">
         <div class="container-fluid">
             <div>
-                {{-- <div class="black-header-container">
-                    <img src="{{ asset('img/svg/black-header.svg') }}" class="black-header" alt="">
-                </div> --}}
+                <div class="black-header-container">
+                    <img src="{{ asset('img/svg/black-header.svg') }}" alt="">
+                </div>
                 <img src="{{ asset('img/svg/logo-circle.svg') }}" class="bg-circle" alt="">
                 <img src="{{ asset('img/tactics-logo-trans.png') }}" class="bg-tactics-logo" alt="">
-                <img src="{{ asset('img/svg/Rectangle 5.svg') }}" class="bg-left-1" alt="">
+                <img src="{{ asset('img/svg/Rectangle 5.svg') }}" class="bg-left-1" alt=""o">
                 <img src="{{ asset('img/svg/fp-svg2.svg') }}" class="bg-left-2" alt="">
             </div>
 
-            <div class="text-white mb-5 pt-5 pt-5">
+            <div class="header-tactics-container text-white">
                 <h1 class="header-tactics lh-1">TACTICS</h1>
                 <p class="subheader-tactics col-6 lh-sm fw-lighter">The Ateneo Consortium of Technological Information and
                     Computing Sciences</p>
-                <button class="btn btn-dark p-3 px-5">CONTACT US</button>
-                <button class="ms-4 btn btn-link text-white text-hide-underline text-underline-hover"
-                    onclick="scrollToSection('announcement_section')">Latest News</button>
+                <button class="btn btn-dark p-3 px-5" ><a href="/contact-us" class="text-decoration-none text-white">CONTACT US</a></button>
+                
             </div>
         </div>
     </div>
@@ -50,19 +49,20 @@
         justify-content: center;
         height: 100vh;
         width: 100%;
+        z-index: -100;
     }
 
     .home-bg {
-        height: 100vh;
-        width: 100%;
         z-index: -100;
         /* height: 100vh; */
         /* font-family: 'Lexend', sans-serif; */
         /* overflow-x: hidden !important; */
         /* overflow-y: hidden; */
-
     }
 
+    .header-tactics-container {
+        padding: 50px;
+    }
     .fa-user {
         background-color: white;
         border-radius: 20px;
@@ -89,7 +89,7 @@
         height: 1261px;
         left: 700px;
         top: 120px;
-        z-index: -80;
+        z-index: -100;
     }
 
     .bg-tactics-logo {
@@ -122,11 +122,17 @@
     }
 
     .black-header-container {
+        position: fixed;
         position: absolute;
-        height: 100vh;
-        width: 100%;
         top: 0;
         right: 0;
+        z-index: -100;
+    }
+
+    .black-header-container img {
+        opacity: 0.6;
+        z-index: -500;
+
     }
 
 
