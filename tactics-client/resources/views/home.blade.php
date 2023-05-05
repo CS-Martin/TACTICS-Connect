@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('home')
-    <div class="bg-div">
-        <img src="{{ url('../img/fp-bg.png') }}" class="home-bg position-absolute position-fixed z-[-100]" alt="">
+    <div class="home-container">
+        <img src="{{ url('../img/fp-bg.png') }}" class="position-absolute position-fixed" alt="">
     </div>
     <div class="home-container px-5" id="home_section">
         <div class="container-fluid">
             <div>
-                <div class="black-header-container">
-                    {{-- <img src="{{ asset('img/svg/black-header.svg') }}" class="black-header" alt=""> --}}
-                </div>
+                {{-- <div class="black-header-container">
+                    <img src="{{ asset('img/svg/black-header.svg') }}" class="black-header" alt="">
+                </div> --}}
                 <img src="{{ asset('img/svg/logo-circle.svg') }}" class="bg-circle" alt="">
                 <img src="{{ asset('img/tactics-logo-trans.png') }}" class="bg-tactics-logo" alt="">
                 <img src="{{ asset('img/svg/Rectangle 5.svg') }}" class="bg-left-1" alt="">
@@ -42,16 +42,25 @@
     }
 </script>
 
-<style scoped>ph
+<style scoped>
+    .home-container {
+        font-family: 'Lexend', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+    }
 
     .home-bg {
-        height: 100%;
+        height: 100vh;
         width: 100%;
+        z-index: -100;
         /* height: 100vh; */
         /* font-family: 'Lexend', sans-serif; */
         /* overflow-x: hidden !important; */
         /* overflow-y: hidden; */
-        z-index: -100;
+
     }
 
     .fa-user {
@@ -59,6 +68,10 @@
         border-radius: 20px;
         padding: 10px;
         color: black;
+    }
+
+    .bg-div {
+        z-index: -100;
     }
 
     h1 {
@@ -116,14 +129,6 @@
         right: 0;
     }
 
-    .home-container {
-        font-family: 'Lexend', sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        width: 100%;
-    }
 
     .header-tactics {
         font-size: 4rem;

@@ -18,10 +18,10 @@
         </div>
 
         <div class="post-section col-9">
-            <div class="post p-4">
+            @foreach($posts as $post)
+            <div class="post p-4 mb-3">
                 <!-- profile -->
                 <div class="d-flex flex-row">
-                    @foreach($posts as $post)
 
                     <div>
                         <i class="fa-solid fa-user fs-1"></i>
@@ -53,13 +53,11 @@
                             </div> 
                         </div>
                     </div>
-                    @endforeach
                 </div>
-
             </div>
+            @endforeach
         </div>
     </div>
-
 </div>
 
 <script>
@@ -102,6 +100,8 @@
 
     .post-section {
         width: 60%;
+        height: 100hv;
+        overflow-y: scroll;
     }
 
     .post {
