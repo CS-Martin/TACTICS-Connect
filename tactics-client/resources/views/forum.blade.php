@@ -1,8 +1,8 @@
 @include('layouts.app')
-<div class="forum-container">
-    <div class="forum-header d-flex">
+<div class="forum-container"> 
+    <div class="forum-header d-flex justify-content-between">
         <h2 class="">Articles & Discussions</h2>
-        <button class="btn btn-info">Create new Post</button>
+        <button onclick="createPost()">Create new Post</button> 
     </div>
 
     <!-- Sidebar -->
@@ -20,7 +20,9 @@
         <div class="post-section col-9">
             <div class="post p-4">
                 <!-- profile -->
-                <div class="d-flex">
+                <div class="d-flex flex-row">
+                    @foreach($posts as $post)
+
                     <div>
                         <i class="fa-solid fa-user fs-1"></i>
                     </div>
@@ -29,28 +31,29 @@
                     <div class="ms-5">
                         <div>
                             <h1>
-                                Are you someone who is fond a fond of fighting games? We have a event that might get you
-                                fired up!
-                                Join now!
+                                {{$post->title}}
                             </h1>
                         </div>
                         
                         <div>
                             <!-- Name & time posted -->
                             <div class="d-flex">
-                                <p class="me-4">Martin Edgar Atole</p>
-                                <p>10 minutes ago</p> 
+                                <p class="me-4">{{$post->name}}</p>
+                                <p>{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
+                                </p>
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <div>Like</div>
+                            <button class="btn btn-primary like-button" data-post-id="{{ $post->id }}">Like</button>
+                            <p>Likes: {{$post->likes}}</p>
                             <div class="d-flex">
                                 <div class="me-3">Comments</div>
                                 <div class="">BM</div>
                             </div> 
                         </div>
                     </div>
+                    @endforeach
                 </div>
 
             </div>
@@ -58,6 +61,30 @@
     </div>
 
 </div>
+
+<script>
+    $(document).ready(function() {
+    $('.like-button').on('click', function() {
+        var postId = $(this).data('post-id');
+        $.ajax({
+            url: '{{ route('posts.like') }}',
+            type: 'POST',
+            data: { post_id: postId },
+            dataType: 'json',
+            success: function(data) {
+                if (data.success) {
+                    // Update the UI to reflect the new like count
+                    var likes = $('#post-' + postId + ' .likes');
+                    likes.text(parseInt(likes.text()) + 1);
+                }
+            }
+        });
+    });
+});
+    function createPost() {
+        window.location.href = '/posts/create';
+    }
+</script>
 
 <style scoped>
     .forum-container {

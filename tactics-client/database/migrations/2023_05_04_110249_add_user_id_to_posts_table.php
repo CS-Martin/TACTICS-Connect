@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForumsTable extends Migration
+class AddUserIdToPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreateForumsTable extends Migration
             $table->text('body');
             $table->unsignedBigInteger('user_id')->default(0); // set a default value
             $table->timestamps();
-        });        
+        });  
     }
 
     /**
@@ -29,6 +29,6 @@ class CreateForumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forums');
+        
     }
 }
