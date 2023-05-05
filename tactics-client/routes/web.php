@@ -38,7 +38,9 @@ Route::post('/comments', [CommentController::class, 'store'])->name('comments.st
 Route::get('/posts/create', function () {
     return view('create-post');
 });
-Route::post('/like', [PostController::class, 'like'])->name('posts.like');
+Route::put('/like', [PostController::class, 'like'])->name('posts.like');
+Route::put('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
+
 
 
 Route::resource('posts.comments', CommentController::class)->only([

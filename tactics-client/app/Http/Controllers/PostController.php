@@ -18,12 +18,13 @@ class PostController extends Controller
         return view('post.index', compact('posts'));
     }
 
-    public function like(Request $request)
+    public function like($id)
     {
-        $post = Post::find($request->input('post_id'));
+        $post = Post::findOrFail($id);
         $post->likes++;
         $post->save();
-        return response()->json(['success' => true]);
+
+        return back();
     }
 
     /**
