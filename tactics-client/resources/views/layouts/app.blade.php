@@ -16,9 +16,14 @@
     {{-- JQuery, used this one to show and hide nav-logo when scrolling --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    {{-- for emojionepicker --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" />
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -50,8 +55,8 @@
                         <li class="nav-item "><a href="#about_section"
                                 class="nav-link text-white {{ request()->is('/about') ? 'active' : '' }}">About Us</a>
                         </li>
-                        <li class="nav-item "><a href="#"
-                                class="nav-link text-white {{ request()->is('officers') ? 'active' : '' }}">Officers</a>
+                        <li class="nav-item "><a href="#announcement_section"
+                                class="nav-link text-white {{ request()->is('officers') ? 'active' : '' }}">Announcements</a>
                         </li>
                         <li class="nav-item "><a href="/forum"
                                 class="nav-link text-white {{ request()->is('forum') ? 'active' : '' }}">Forum</a>
@@ -342,7 +347,7 @@
             event.preventDefault();
             $('html, body').stop().animate({
                 scrollTop: target.offset().top
-            }, 1000);
+            }, 100);
         }
     });
 
@@ -432,6 +437,8 @@
     .navbar {
         background-color: transparent;
         transition: background-color 0.5s ease-in-out;
+        padding-left: 50px;
+        padding-right: 50px;
     }
 
     .navbar-scroll {

@@ -9,13 +9,42 @@
             <div class="circle bottom-right"></div>
             <div class="announcement-font">
                 <h1 class="announcement-header text-center mt-3">ANNOUNCEMENTS</h1>
+                <div class="announcements d-flex p-5 fs-4 mx-2">
+                    <div class="w-50">
+                        
+                    </div>
+
+                    <div class="w-50 fs-4 mx-2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto non aspernatur
+                            repellendus nesciunt dicta? Dignissimos ducimus, delectus dolores nisi excepturi eaque
+                            soluta inventore ea autem. Nulla assumenda quia neque exercitationem! <br><br> Lorem ipsum dolor
+                            sit amet, consectetur adipisicing elit. Totam dolor vel adipisci quod harum maxime,
+                            similique amet. Perferendis iure libero repellendus sed inventore eligendi, voluptates,
+                            harum porro tenetur possimus suscipit. <br><br> Lorem ipsum dolor
+                            sit amet, consectetur adipisicing elit. Totam dolor vel adipisci quod harum maxime,
+                            similique amet. Perferendis iure libero repellendus sed inventore eligendi, voluptates,
+                            harum porro tenetur possimus suscipit. Lorem ipsum dolor
+                            sit amet, consectetur adipisicing elit. Totam dolor vel adipisci quod harum maxime,
+                            similique amet. Perferendis iure libero repellendus sed inventore eligendi, voluptates,
+                            harum porro tenetur possimus suscipit.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    {{-- <img src="{{ asset('img/svg/Saly-10.svg') }}" class="saly-svg" alt=""> --}}
+    <div class="saly">
+        <img src="{{ asset('img/svg/Saly-10.svg') }}" class="position-absolute h-100" alt="">
+
+    </div>
 </div>
 
 <style scoped>
+    .saly {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
     .announcement-container {
         height: 100vh;
         width: 100%;

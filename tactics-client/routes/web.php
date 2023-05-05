@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactUs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForumController;
@@ -32,6 +33,7 @@ Auth::routes();
 // Route options();
 // Route::redirect();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/contact-us', [ContactUs::class, 'index'])->name('contact-us');
 Route::get('/forum', [ForumController::class, 'index'])->name('forum');
 Route::match(['GET', 'POST'], '/posts', [PostController::class, 'store'])->name('posts.store');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
