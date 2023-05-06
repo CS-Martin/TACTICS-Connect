@@ -35,6 +35,7 @@ Auth::routes();
 // Route::redirect();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/contact-us', [ContactUs::class, 'index'])->name('contact-us');
+Route::delete('/forum/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::get('/forum', [ForumController::class, 'index'])->name('forum');
 Route::match(['GET', 'POST'], '/posts', [PostController::class, 'store'])->name('posts.store');
 Route::match(['GET', 'POST'], '/comments', [CommentController::class, 'store'])->name('comment.store');

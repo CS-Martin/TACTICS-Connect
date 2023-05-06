@@ -109,10 +109,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
+        $post = Post::findOrFail($id);
         $post->delete();
 
-        return redirect('/posts')->with('success', 'Post deleted successfully!');
+        return redirect('/forum')->with('success', 'Post deleted successfully!');
     }
 }

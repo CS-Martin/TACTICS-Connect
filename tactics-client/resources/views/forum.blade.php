@@ -46,7 +46,8 @@
 
         <div class="post-section">
             @foreach ($posts as $post)
-                <div class="post p-4 mb-3">
+                <div class="post p-4 mb-3 position-relative">
+                    <!-- Add position-relative class here -->
                     <!-- profile -->
                     <div class="d-flex">
                         <div class="card-profile ms-3">
@@ -56,6 +57,33 @@
                         <!-- Title -->
                         <div class="ms-5 w-100">
                             <div>
+                                <!-- Default dropend button -->
+                                <div class="dropdown menu-btn position-absolute top-0 end-0 p-4 me-3">
+                                    <button type="button" class="border-0" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="fa-solid fa-ellipsis fs-4 gray-text"></i>
+
+                                    </button>
+
+                                    {{-- Menu dropdown --}}
+                                    <ul class="dropdown-menu bg-dark shadow-lg">
+                                        {{-- Delete post --}}
+                                        <button type="submit"
+                                            class="text-start border-0 bg-transparent px-3 w-100 text-white py-1">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            Edit
+                                        </button>
+                                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="text-start border-0 bg-transparent px-3 text-danger w-100 py-1">
+                                                <i class="fa-solid fa-trash"></i>
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </ul>
+                                </div>
                                 <h1>
                                     {{ $post->title }}
                                 </h1>
@@ -65,8 +93,7 @@
                                 <!-- Name & time posted -->
                                 <div class="d-flex">
                                     <p class="me-4 username-style">{{ $post->name }}</p>
-                                    <p>{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
-                                    </p>
+                                    <p>{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</p>
                                 </div>
                             </div>
 
@@ -77,32 +104,34 @@
                                             @csrf
                                             @method('PUT')
                                             <button type="submit"
-                                                class="rounded-circle border-0 fs-4 like-btn d-flex me-3 p-2"><i
-                                                    class="fa-regular fa-thumbs-up"></i></button>
+                                                class="rounded-circle border-0 fs-4 like-btn d-flex me-3 p-2">
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </button>
                                         </form>
                                     @endif
                                     <p class="m-0">{{ $post->likes }}</p>
-
                                 </div>
                                 <div class="d-flex">
                                     <div class="me-3">
-                                        <button class="p-2 border-0 rounded-pill comment-btn px-4"> <a
-                                                href="/forum/comments/{{ $post->id}}">Comment</a>
+                                        <button class="p-2 border-0 rounded-pill comment-btn px-4">
+                                            <a href="/forum/comments/{{ $post->id }}">Comment</a>
                                         </button>
                                     </div>
                                     <div class="">
                                         <button type="submit"
                                             class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2">
-                                            <i class="fa-solid fa-bookmark"></i></button>
+                                            <i class="fa-solid fa-bookmark"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                @foreach ($post->comments as $comment)
-                                    <div>
-                                        <h3>{{ $comment->name }}</h3>
-                                        <p>{{ $comment->message }}</p>
-                                    </div>
-                                @endforeach
                             </div>
+
+                            @foreach ($post->comments as $comment)
+                                <div>
+                                    <h3>{{ $comment->name }}</h3>
+                                    <p>{{ $comment->message }}</p>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -203,5 +232,14 @@
     .card-profile img {
         margin-top: 25%;
         width: inherit;
+    }
+
+    .menu-btn {
+        cursor: pointer;
+        height: inherit;
+    }
+
+    .menu-btn button {
+        background: none;
     }
 </style>
