@@ -64,13 +64,6 @@
         padding: 50px;
     }
 
-    .fa-user {
-        background-color: white;
-        border-radius: 20px;
-        padding: 10px;
-        color: black;
-    }
-
     .bg-div {
         z-index: -100;
     }
@@ -78,10 +71,6 @@
     h1 {
         font-weight: 700;
         font-size: 170px;
-    }
-
-    .fa-solid {
-        border: 10px white;
     }
 
     .bg-circle {

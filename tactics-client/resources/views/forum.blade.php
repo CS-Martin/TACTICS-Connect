@@ -59,7 +59,7 @@
                             <div>
                                 <!-- Default dropend button -->
                                 <div class="dropdown menu-btn position-absolute top-0 end-0 p-4 me-3">
-                                    <button type="button" class="border-0" data-bs-toggle="dropdown"
+                                    <button type="button" class="border-0 rounded-circle p-2" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         <i class="fa-solid fa-ellipsis fs-4 gray-text"></i>
 
@@ -67,12 +67,34 @@
 
                                     {{-- Menu dropdown --}}
                                     <ul class="dropdown-menu bg-dark shadow-lg">
-                                        {{-- Delete post --}}
-                                        <button type="submit"
+                                        {{-- Edit post --}}
+
+                                        <a href="{{ route('posts.edit', $post->id) }}" data-bs-toggle="modal"
+                                            data-bs-target="#editPostModal"
                                             class="text-start border-0 bg-transparent px-3 w-100 text-white py-1">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                             Edit
-                                        </button>
+                                        </a>
+
+                                        <div class="modal fade" id="editPostModal" tabindex="-1"
+                                            data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create a
+                                                            post</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @include('create-post')
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- Delete post --}}
                                         <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -84,6 +106,7 @@
                                         </form>
                                     </ul>
                                 </div>
+
                                 <h1>
                                     {{ $post->title }}
                                 </h1>
@@ -208,7 +231,11 @@
         background: #DFDFDF;
     }
 
-    .bookmark-style:hover,
+    .menu-btn i:hover,
+    .bookmark-style:hover {
+        color: #4BA4A8;
+    }
+
     .like-btn:hover,
     .comment-btn:hover {
         background: rgba(97, 195, 200, 0.25);

@@ -65,9 +65,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        return view('posts.show', compact('post'));
+        $post = Post::find($id);
+
+        return view('post.show', compact('post'));
     }
 
     /**
@@ -76,11 +78,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        return view('post.edit', compact('post'));
+        $post = Post::find($id);
+        return view('edit-post', compact('post'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -88,19 +90,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
-        ]);
-
-        $post->name = $request->user()->name;
-        $post->title = $validatedData['title'];
-        $post->body = $validatedData['body'];
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        // Update other post properties as needed
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post updated successfully!');
+        return redirect()->route('forum')->with('success', 'Post updated successfully.');
     }
 
     /**

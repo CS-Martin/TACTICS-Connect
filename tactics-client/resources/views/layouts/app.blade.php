@@ -17,8 +17,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     {{-- for emojionepicker --}}
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" />
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -294,7 +295,7 @@
                                     </div>
 
                                     {{-- Nav signin icon --}}
-                                    <button class="btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                                    <button class="btn signin-icon" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
                                         <i class="fa-solid fa-user"></i>
                                     </button>
                                 </li>
@@ -315,10 +316,23 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu dropdown-menu-end bg-dark" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item gray-text" href="">
+                                        <i class="fa-solid fa-user"></i>
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item gray-text" href="">
+                                        <i class="fa-solid fa-bell"></i>
+                                        Notifications
+                                    </a>
+                                    <a class="dropdown-item gray-text" href="">
+                                        <i class="fa-solid fa-gear"></i>
+                                        Settings
+                                    </a>
+                                    <a class="dropdown-item logout-btn text-danger " href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
                                         {{ __('Logout') }}
                                     </a>
 
@@ -443,6 +457,13 @@
 
     .navbar-scroll {
         background-color: rgba(0, 0, 0, 0.74);
+    }
+
+    .signin-icon i {
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px;
+        color: black;
     }
 </style>
 
