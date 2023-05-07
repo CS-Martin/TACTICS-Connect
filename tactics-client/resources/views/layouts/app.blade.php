@@ -77,6 +77,7 @@
                                                 </div>
 
                                                 <div class="modal-body container">
+                                                    {{-- Login modal overlay --}}
                                                     <form method="POST" action="{{ route('login') }}">
                                                         @csrf
 
@@ -97,11 +98,15 @@
 
                                                                     {{-- Email input field --}}
                                                                     <div class="col-md-6 input-hero">
-                                                                        <input id="email" type="email"
-                                                                            placeholder="Username"
-                                                                            class="form-control @error('email') is-invalid @enderror"
-                                                                            name="email" value="{{ old('email') }}"
-                                                                            required autocomplete="email" autofocus>
+                                                                        <div class="form-floating">
+                                                                            <input id="email" type="email"
+                                                                                placeholder="Username"
+                                                                                class="form-control @error('email') is-invalid @enderror"
+                                                                                name="email" value="{{ old('email') }}"
+                                                                                placeholder="name@example.com"
+                                                                                required autocomplete="email" autofocus>
+                                                                            <label for="email">Email</label>
+                                                                        </div>
 
                                                                         @error('email')
                                                                             <span class="invalid-feedback" role="alert">
@@ -114,11 +119,15 @@
                                                                 {{-- Password input field --}}
                                                                 <div class="row mb-3">
                                                                     <div class="col-md-6 input-hero">
-                                                                        <input id="password" type="password"
-                                                                            placeholder="Password"
-                                                                            class="form-control @error('password') is-invalid @enderror"
-                                                                            name="password" required
-                                                                            autocomplete="current-password">
+                                                                        <div class="form-floating">
+                                                                            <input id="password" type="password"
+                                                                                placeholder="Password"
+                                                                                class="form-control @error('password') is-invalid @enderror"
+                                                                                placeholder="Password"
+                                                                                name="password" required
+                                                                                autocomplete="current-password">
+                                                                            <label for="password">Password</label>
+                                                                        </div>
 
                                                                         @error('password')
                                                                             <span class="invalid-feedback" role="alert">
@@ -209,12 +218,16 @@
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     {{-- Name input field --}}
-                                                                    <div class="col-md-6 input-hero register-input-hero">
-                                                                        <input id="name" type="text"
-                                                                            placeholder="Name"
-                                                                            class="form-control @error('name') is-invalid @enderror"
-                                                                            name="name" value="{{ old('name') }}"
-                                                                            required autocomplete="name" autofocus>
+                                                                    <div class="input-hero register-input-hero">
+                                                                        <div class="form-floating">
+                                                                            <input id="name" type="text"
+                                                                                placeholder="Name"
+                                                                                class="form-control register-form-control @error('name') is-invalid @enderror"
+                                                                                name="name" value="{{ old('name') }}"
+                                                                                required autocomplete="name" autofocus>
+                                                                            <label for="name">Name</label>
+
+                                                                        </div>
 
                                                                         @error('name')
                                                                             <span class="invalid-feedback" role="alert">
@@ -228,11 +241,14 @@
 
                                                                     {{-- Email address input field --}}
                                                                     <div class="col-md-6 input-hero register-input-hero">
-                                                                        <input id="email" type="email"
-                                                                            placeholder="Email Address"
-                                                                            class="form-control @error('email') is-invalid @enderror"
-                                                                            name="email" value="{{ old('email') }}"
-                                                                            required autocomplete="email">
+                                                                        <div class="form-floating">
+                                                                            <input id="email" type="email"
+                                                                                placeholder="Email Address"
+                                                                                class="form-control @error('email') is-invalid @enderror"
+                                                                                name="email" value="{{ old('email') }}"
+                                                                                required autocomplete="email">
+                                                                            <label for="email">Email</label>
+                                                                        </div>
 
                                                                         @error('email')
                                                                             <span class="invalid-feedback" role="alert">
@@ -246,12 +262,15 @@
 
                                                                     {{-- Password input field --}}
                                                                     <div class="col-md-6 input-hero register-input-hero">
-                                                                        <input id="password" type="password"
-                                                                            placeholder="Password"
-                                                                            class="form-control @error('password') is-invalid @enderror"
-                                                                            name="password" required
-                                                                            autocomplete="new-password">
+                                                                        <div class="form-floating">
+                                                                            <input id="password" type="password"
+                                                                                placeholder="Password"
+                                                                                class="form-control @error('password') is-invalid @enderror"
+                                                                                name="password" required
+                                                                                autocomplete="new-password">
+                                                                            <label for="password">Password</label>
 
+                                                                        </div>    
                                                                         @error('password')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -264,11 +283,14 @@
 
                                                                     {{-- Password confirm input field --}}
                                                                     <div class="col-md-6 input-hero register-input-hero">
-                                                                        <input id="password-confirm" type="password"
-                                                                            placeholder="Confirm password"
-                                                                            class="form-control"
-                                                                            name="password_confirmation" required
-                                                                            autocomplete="new-password">
+                                                                        <div class="form-floating">
+                                                                            <input id="password-confirm" type="password"
+                                                                                placeholder="Confirm password"
+                                                                                class="form-control"
+                                                                                name="password_confirmation" required
+                                                                                autocomplete="new-password">
+                                                                            <label for="password-confirm">Confirm Password</label>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
 
@@ -402,10 +424,13 @@
         color: #868686;
     }
 
-    .register-saly,
+    .register-saly {
+        width: 90%;
+        height: inherit;
+    }
     .signin-saly {
         width: 90%;
-        height: auto;
+        height: inherit;
     }
 
     .input-hero {

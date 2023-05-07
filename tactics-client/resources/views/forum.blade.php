@@ -2,7 +2,7 @@
 <div class="forum-container">
     <div class="forum-header d-flex justify-content-between">
         <h2 class="title">ARTICLES & DISCUSSIONS</h2>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#createPostModal" onclick="createPost()"
+        <button type="button" data-bs-toggle="modal" data-bs-target="#createPostModal"
             class="create-post-btn p-2 px-4 text-white">
             <i class="fa-regular fa-pen-to-square me-1 fw-bolder fs-5"></i>
             Create new Post
@@ -62,37 +62,17 @@
                                     <button type="button" class="border-0 rounded-circle p-2" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         <i class="fa-solid fa-ellipsis fs-4 gray-text"></i>
-
                                     </button>
 
                                     {{-- Menu dropdown --}}
                                     <ul class="dropdown-menu bg-dark shadow-lg">
-                                        {{-- Edit post --}}
-
-                                        <a href="{{ route('posts.edit', $post->id) }}" data-bs-toggle="modal"
-                                            data-bs-target="#editPostModal"
-                                            class="text-start border-0 bg-transparent px-3 w-100 text-white py-1">
+                                        <!-- Button trigger modal -->
+                                        <button type="button"
+                                            class="text-start border-0 bg-transparent px-3 w-100 text-white py-1"
+                                            data-bs-toggle="modal" data-bs-target="#editPostModal">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                             Edit
-                                        </a>
-
-                                        <div class="modal fade" id="editPostModal" tabindex="-1"
-                                            data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create a
-                                                            post</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        @include('create-post')
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </button>
 
                                         {{-- Delete post --}}
                                         <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
@@ -105,12 +85,34 @@
                                             </button>
                                         </form>
                                     </ul>
+
+                                    {{-- It seems that I cannot put this edit-post modal div below it's button, so I'll be putting it here instead :> --}}
+                                    <!-- Edit post modal -->
+                                    <div class="modal fade" id="editPostModal" tabindex="-1"
+                                        data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create a post
+                                                    </h1>
+                                                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @include('edit-post')
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <h1>
                                     {{ $post->title }}
+
                                 </h1>
                             </div>
+
 
                             <div>
                                 <!-- Name & time posted -->
