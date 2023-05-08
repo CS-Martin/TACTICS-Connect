@@ -20,10 +20,21 @@
                     <div class="card-profile position-relative border-bottom accordion">
                         <div>
                             @if (auth()->user()->profile_picture)
-                                <button class="profile-overlay">
-                                    <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
-                                        class="profile-overlay profile-picture rounded-circle d-flex justify-content-center align-items-center">
-                                </button>
+                                <form id="upload-form" action="{{ route('upload.profile.picture') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <button class="border-0" onclick="openFileInput(event)">
+                                        <div class="profile-picture-container">
+                                            <div class="profile-picture-overlay rounded-circle">
+                                                <i class="fas fa-edit"></i> <!-- Replace this with your edit icon -->
+                                            </div>
+                                            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
+                                                class="profile-picture rounded-circle">
+                                        </div>
+                                    </button>
+                                    <input id="file-input" type="file" name="profile_picture" class="d-none"
+                                        accept="image/*" onchange="uploadPicture(event)">
+                                </form>
                             @else
                                 <img src="{{ asset('img/default-user-picture.jpg') }}"
                                     class="profile-picture rounded-circle d-flex justify-content-center align-items-center">
@@ -31,15 +42,15 @@
 
                         </div>
 
-                        <form action="{{ route('upload.profile.picture') }}" method="POST"
+                        {{-- <form action="{{ route('upload.profile.picture') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <input type="file" name="profile_picture">
                             <button type="submit">Upload</button>
-                        </form>
+                        </form> --}}
 
                         <h3 class="username-style margin-0 mt-3">Martin Edgar Atole</h3>
-                        <p class="gray-text">@UserID</p>
+                        <p class="gray-text">@UserID{ TC{{ auth()->user()->id }} }</p>
                         <p class="gray-text">Lorem ipsum dolor sit amet. Et dolor eligendi aut quae mollitia aut
                             consequatur consequatur ut corrupti voluptatem qui illum autem. </p>
                         <button type="button" class="border-0 rounded-circle p-2 position-absolute text-primary-color"
@@ -97,6 +108,18 @@
     </div>
 </body>
 
+<script>
+    function openFileInput(event) {
+        event.preventDefault();
+        document.getElementById('file-input').click();
+    }
+
+    function uploadPicture(event) {
+        event.preventDefault();
+        document.getElementById('upload-form').submit();
+    }
+</script>
+
 <style scoped>
     .profile-container {
         background-color: #f4f4f4;
@@ -120,23 +143,39 @@
         width: auto;
     }
 
-    /* .profile-overlay {
-        position: relative;
+    img:hover {
+        opacity: 0.5;
     }
 
-    .profile-overlay::before {
-        content: "";
+    .profile-picture-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .profile-picture-overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         opacity: 0;
         transition: opacity 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Adjust the opacity and color as needed */
     }
 
-    .profile-overlay:hover::before {
+    .profile-picture-container:hover .profile-picture-overlay {
         opacity: 1;
-    } */
+    }
+
+    .profile-picture-overlay i {
+        color: white;
+        /* Adjust the color of the edit icon */
+        font-size: 24px;
+        /* Adjust the size of the edit icon */
+    }
 </style>
