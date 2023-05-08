@@ -103,8 +103,8 @@
                                                                                 placeholder="Username"
                                                                                 class="form-control @error('email') is-invalid @enderror"
                                                                                 name="email" value="{{ old('email') }}"
-                                                                                placeholder="name@example.com"
-                                                                                required autocomplete="email" autofocus>
+                                                                                placeholder="name@example.com" required
+                                                                                autocomplete="email" autofocus>
                                                                             <label for="email">Email</label>
                                                                         </div>
 
@@ -123,9 +123,8 @@
                                                                             <input id="password" type="password"
                                                                                 placeholder="Password"
                                                                                 class="form-control @error('password') is-invalid @enderror"
-                                                                                placeholder="Password"
-                                                                                name="password" required
-                                                                                autocomplete="current-password">
+                                                                                placeholder="Password" name="password"
+                                                                                required autocomplete="current-password">
                                                                             <label for="password">Password</label>
                                                                         </div>
 
@@ -223,8 +222,9 @@
                                                                             <input id="name" type="text"
                                                                                 placeholder="Name"
                                                                                 class="form-control register-form-control @error('name') is-invalid @enderror"
-                                                                                name="name" value="{{ old('name') }}"
-                                                                                required autocomplete="name" autofocus>
+                                                                                name="name"
+                                                                                value="{{ old('name') }}" required
+                                                                                autocomplete="name" autofocus>
                                                                             <label for="name">Name</label>
 
                                                                         </div>
@@ -245,8 +245,9 @@
                                                                             <input id="email" type="email"
                                                                                 placeholder="Email Address"
                                                                                 class="form-control @error('email') is-invalid @enderror"
-                                                                                name="email" value="{{ old('email') }}"
-                                                                                required autocomplete="email">
+                                                                                name="email"
+                                                                                value="{{ old('email') }}" required
+                                                                                autocomplete="email">
                                                                             <label for="email">Email</label>
                                                                         </div>
 
@@ -270,7 +271,7 @@
                                                                                 autocomplete="new-password">
                                                                             <label for="password">Password</label>
 
-                                                                        </div>    
+                                                                        </div>
                                                                         @error('password')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -289,7 +290,8 @@
                                                                                 class="form-control"
                                                                                 name="password_confirmation" required
                                                                                 autocomplete="new-password">
-                                                                            <label for="password-confirm">Confirm Password</label>
+                                                                            <label for="password-confirm">Confirm
+                                                                                Password</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -317,7 +319,8 @@
                                     </div>
 
                                     {{-- Nav signin icon --}}
-                                    <button class="btn signin-icon" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                                    <button class="btn signin-icon" data-bs-target="#exampleModalToggle"
+                                        data-bs-toggle="modal">
                                         <i class="fa-solid fa-user"></i>
                                     </button>
                                 </li>
@@ -332,9 +335,13 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#"
-                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white position-relative"
+                                    href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" v-pre>
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -343,10 +350,16 @@
                                         <i class="fa-solid fa-user"></i>
                                         Profile
                                     </a>
-                                    <a class="dropdown-item gray-text" href="">
+
+                                    <a class="dropdown-item gray-text position-relative" href="">
                                         <i class="fa-solid fa-bell"></i>
-                                        Notifications
+                                        <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            99+
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>Notifications
                                     </a>
+
                                     <a class="dropdown-item gray-text" href="">
                                         <i class="fa-solid fa-gear"></i>
                                         Settings
@@ -390,12 +403,19 @@
     // Function to show nav-bar logo onscroll
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
+        var isForumPage = $('body').hasClass('forum-container');
 
         if (scroll > 50) {
             $('.navbar').addClass('navbar-scroll');
             $('.logo').css('opacity', '1');
             $('.navbar').removeClass('navbar-transparent');
+
         } else {
+            if (isForumPage) {
+                $('.logo').css('opacity', '1');
+            } else {
+                $('.logo').css('opacity', '0');
+            }
             $('.navbar').removeClass('navbar-scroll');
             $('.logo').css('opacity', '0');
             $('.navbar').addClass('navbar-transparent');
@@ -428,6 +448,7 @@
         width: 90%;
         height: inherit;
     }
+
     .signin-saly {
         width: 90%;
         height: inherit;

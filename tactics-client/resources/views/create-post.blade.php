@@ -4,14 +4,14 @@
         {{-- post title --}}
         <div class="mb-2">
             <label for="title" class="mb-1 gray-text">Title</label>
-            <input name="title" class="title-field" placeholder="What's on your mind, {{ Auth::user()->name }}?"
-                id="title">
+            <input name="title" class="title-field form-control" placeholder="What's on your mind, {{ Auth::user()->name }}?"
+                id="title" required>
         </div>
 
         {{-- body/content --}}
         <div class=" mb-2">
             <label for="floatingTextarea2" class="gray-text">Description</label>
-            <textarea name="body" class="" placeholder="Leave a comment here" id="body"></textarea>
+            <textarea name="body" class="form-control" placeholder="Leave a comment here" id="body" required></textarea>
         </div>
 
         <div class="form-group">
@@ -21,14 +21,14 @@
         
         {{-- footer --}}
         <div class="">
-            <button type="submit" class="w-100 p-2 create-post-btn">Create Post</button>
+            <button type="submit" class="w-100 p-2 create-post-btn text-white">Create Post</button>
         </div>
 
     </form>
 </div>
 
 <script>
-    $('#title').emojioneArea({
+   $('#title').emojioneArea({
         pickerPosition: 'right',
     });
 

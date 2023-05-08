@@ -21,7 +21,6 @@
                 <p class="subheader-tactics col-6 lh-sm fw-lighter">The Ateneo Consortium of Technological Information and
                     Computing Sciences</p>
                 <a href="/contact-us" class="btn btn-dark p-3 px-5 text-decoration-none text-white">CONTACT US</a>
-
             </div>
         </div>
     </div>
