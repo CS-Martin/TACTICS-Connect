@@ -43,9 +43,6 @@
     color: #888888;
 }
 
-.btn-color {
-    background-color: #4ba4a8;
-}
 
 .dropdown-menu {
     background: #252525;
@@ -72,4 +69,25 @@
 .sidebar-btn {
     color: #888888;
     background: none;
+}
+
+/* TACTICS-Conneect text and btn color */
+.text-primary-color {
+    color: #4ba4a8;
+}
+
+.btn-color {
+    background-color: #4ba4a8;
+}
+
+.text-primary-color:hover {
+    color: #275c5f;
+}
+
+.btn-color:hover {
+    color: #275c5f;
+}
+
+.title-field {
+    height: 60px;
 }

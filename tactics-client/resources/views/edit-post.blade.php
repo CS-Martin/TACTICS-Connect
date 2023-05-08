@@ -25,7 +25,7 @@
 
 <script>
     $('#editPostTitle').emojioneArea({
-        pickerPosition: 'right',
+        pickerPosition: 'right'
     });
 
     $('#editPostBody').emojioneArea({
@@ -34,10 +34,6 @@
 </script>
 
 <style scoped>
-    .title-field {
-        height: 60px;
-    }
-
     .create-post-btn {
         background-color: #4BA4A8;
         border-radius: 8px;
