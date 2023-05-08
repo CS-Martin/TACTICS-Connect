@@ -17,8 +17,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     {{-- for emojionepicker --}}
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" />
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -52,11 +53,11 @@
                         <li class="nav-item "><a href="/"
                                 class="nav-link text-white {{ request()->is('/') ? 'active' : '' }}">Home</a>
                         </li>
-                        <li class="nav-item "><a href="#about_section"
-                                class="nav-link text-white {{ request()->is('/about') ? 'active' : '' }}">About Us</a>
-                        </li>
                         <li class="nav-item "><a href="#announcement_section"
                                 class="nav-link text-white {{ request()->is('officers') ? 'active' : '' }}">Announcements</a>
+                        </li>
+                        <li class="nav-item "><a href="#about_section"
+                                class="nav-link text-white {{ request()->is('/about') ? 'active' : '' }}">About Us</a>
                         </li>
                         <li class="nav-item "><a href="/forum"
                                 class="nav-link text-white {{ request()->is('forum') ? 'active' : '' }}">Forum</a>
@@ -76,6 +77,7 @@
                                                 </div>
 
                                                 <div class="modal-body container">
+                                                    {{-- Login modal overlay --}}
                                                     <form method="POST" action="{{ route('login') }}">
                                                         @csrf
 
@@ -96,11 +98,15 @@
 
                                                                     {{-- Email input field --}}
                                                                     <div class="col-md-6 input-hero">
-                                                                        <input id="email" type="email"
-                                                                            placeholder="Username"
-                                                                            class="form-control @error('email') is-invalid @enderror"
-                                                                            name="email" value="{{ old('email') }}"
-                                                                            required autocomplete="email" autofocus>
+                                                                        <div class="form-floating">
+                                                                            <input id="email" type="email"
+                                                                                placeholder="Username"
+                                                                                class="form-control @error('email') is-invalid @enderror"
+                                                                                name="email" value="{{ old('email') }}"
+                                                                                placeholder="name@example.com" required
+                                                                                autocomplete="email" autofocus>
+                                                                            <label for="email">Email</label>
+                                                                        </div>
 
                                                                         @error('email')
                                                                             <span class="invalid-feedback" role="alert">
@@ -113,11 +119,14 @@
                                                                 {{-- Password input field --}}
                                                                 <div class="row mb-3">
                                                                     <div class="col-md-6 input-hero">
-                                                                        <input id="password" type="password"
-                                                                            placeholder="Password"
-                                                                            class="form-control @error('password') is-invalid @enderror"
-                                                                            name="password" required
-                                                                            autocomplete="current-password">
+                                                                        <div class="form-floating">
+                                                                            <input id="password" type="password"
+                                                                                placeholder="Password"
+                                                                                class="form-control @error('password') is-invalid @enderror"
+                                                                                placeholder="Password" name="password"
+                                                                                required autocomplete="current-password">
+                                                                            <label for="password">Password</label>
+                                                                        </div>
 
                                                                         @error('password')
                                                                             <span class="invalid-feedback" role="alert">
@@ -208,12 +217,17 @@
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     {{-- Name input field --}}
-                                                                    <div class="col-md-6 input-hero register-input-hero">
-                                                                        <input id="name" type="text"
-                                                                            placeholder="Name"
-                                                                            class="form-control @error('name') is-invalid @enderror"
-                                                                            name="name" value="{{ old('name') }}"
-                                                                            required autocomplete="name" autofocus>
+                                                                    <div class="input-hero register-input-hero">
+                                                                        <div class="form-floating">
+                                                                            <input id="name" type="text"
+                                                                                placeholder="Name"
+                                                                                class="form-control register-form-control @error('name') is-invalid @enderror"
+                                                                                name="name"
+                                                                                value="{{ old('name') }}" required
+                                                                                autocomplete="name" autofocus>
+                                                                            <label for="name">Name</label>
+
+                                                                        </div>
 
                                                                         @error('name')
                                                                             <span class="invalid-feedback" role="alert">
@@ -227,11 +241,15 @@
 
                                                                     {{-- Email address input field --}}
                                                                     <div class="col-md-6 input-hero register-input-hero">
-                                                                        <input id="email" type="email"
-                                                                            placeholder="Email Address"
-                                                                            class="form-control @error('email') is-invalid @enderror"
-                                                                            name="email" value="{{ old('email') }}"
-                                                                            required autocomplete="email">
+                                                                        <div class="form-floating">
+                                                                            <input id="email" type="email"
+                                                                                placeholder="Email Address"
+                                                                                class="form-control @error('email') is-invalid @enderror"
+                                                                                name="email"
+                                                                                value="{{ old('email') }}" required
+                                                                                autocomplete="email">
+                                                                            <label for="email">Email</label>
+                                                                        </div>
 
                                                                         @error('email')
                                                                             <span class="invalid-feedback" role="alert">
@@ -245,12 +263,15 @@
 
                                                                     {{-- Password input field --}}
                                                                     <div class="col-md-6 input-hero register-input-hero">
-                                                                        <input id="password" type="password"
-                                                                            placeholder="Password"
-                                                                            class="form-control @error('password') is-invalid @enderror"
-                                                                            name="password" required
-                                                                            autocomplete="new-password">
+                                                                        <div class="form-floating">
+                                                                            <input id="password" type="password"
+                                                                                placeholder="Password"
+                                                                                class="form-control @error('password') is-invalid @enderror"
+                                                                                name="password" required
+                                                                                autocomplete="new-password">
+                                                                            <label for="password">Password</label>
 
+                                                                        </div>
                                                                         @error('password')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -263,11 +284,15 @@
 
                                                                     {{-- Password confirm input field --}}
                                                                     <div class="col-md-6 input-hero register-input-hero">
-                                                                        <input id="password-confirm" type="password"
-                                                                            placeholder="Confirm password"
-                                                                            class="form-control"
-                                                                            name="password_confirmation" required
-                                                                            autocomplete="new-password">
+                                                                        <div class="form-floating">
+                                                                            <input id="password-confirm" type="password"
+                                                                                placeholder="Confirm password"
+                                                                                class="form-control"
+                                                                                name="password_confirmation" required
+                                                                                autocomplete="new-password">
+                                                                            <label for="password-confirm">Confirm
+                                                                                Password</label>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
 
@@ -294,7 +319,8 @@
                                     </div>
 
                                     {{-- Nav signin icon --}}
-                                    <button class="btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                                    <button class="btn signin-icon" data-bs-target="#exampleModalToggle"
+                                        data-bs-toggle="modal">
                                         <i class="fa-solid fa-user"></i>
                                     </button>
                                 </li>
@@ -309,16 +335,39 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#"
-                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white position-relative"
+                                    href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" v-pre>
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu dropdown-menu-end bg-dark" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item gray-text" href="">
+                                        <i class="fa-solid fa-user"></i>
+                                        Profile
+                                    </a>
+
+                                    <a class="dropdown-item gray-text position-relative" href="">
+                                        <i class="fa-solid fa-bell"></i>
+                                        <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            99+
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>Notifications
+                                    </a>
+
+                                    <a class="dropdown-item gray-text" href="">
+                                        <i class="fa-solid fa-gear"></i>
+                                        Settings
+                                    </a>
+                                    <a class="dropdown-item logout-btn text-danger " href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
                                         {{ __('Logout') }}
                                     </a>
 
@@ -354,12 +403,19 @@
     // Function to show nav-bar logo onscroll
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
+        var isForumPage = $('body').hasClass('forum-container');
 
         if (scroll > 50) {
             $('.navbar').addClass('navbar-scroll');
             $('.logo').css('opacity', '1');
             $('.navbar').removeClass('navbar-transparent');
+
         } else {
+            if (isForumPage) {
+                $('.logo').css('opacity', '1');
+            } else {
+                $('.logo').css('opacity', '0');
+            }
             $('.navbar').removeClass('navbar-scroll');
             $('.logo').css('opacity', '0');
             $('.navbar').addClass('navbar-transparent');
@@ -388,10 +444,14 @@
         color: #868686;
     }
 
-    .register-saly,
+    .register-saly {
+        width: 90%;
+        height: inherit;
+    }
+
     .signin-saly {
         width: 90%;
-        height: auto;
+        height: inherit;
     }
 
     .input-hero {
@@ -443,6 +503,13 @@
 
     .navbar-scroll {
         background-color: rgba(0, 0, 0, 0.74);
+    }
+
+    .signin-icon i {
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px;
+        color: black;
     }
 </style>
 

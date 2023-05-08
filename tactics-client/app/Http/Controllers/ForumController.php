@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Forum;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Forum;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -17,8 +18,10 @@ class ForumController extends Controller
     public function index()
     {
         $users = User::all();
-        $posts = Post::all();
-        return view('forum', ['posts' => $posts, 'users' => $users]); 
+
+        $posts = Post::with('comments')->orderBy('created_at', 'desc')->get();
+
+        return view('forum', ['posts' => $posts, 'users' => $users]);
     }
 
     /**

@@ -20,8 +20,7 @@
                 <h1 class="header-tactics lh-1">TACTICS</h1>
                 <p class="subheader-tactics col-6 lh-sm fw-lighter">The Ateneo Consortium of Technological Information and
                     Computing Sciences</p>
-                <button class="btn btn-dark p-3 px-5" ><a href="/contact-us" class="text-decoration-none text-white">CONTACT US</a></button>
-                
+                <a href="/contact-us" class="btn btn-dark p-3 px-5 text-decoration-none text-white">CONTACT US</a>
             </div>
         </div>
     </div>
@@ -63,12 +62,6 @@
     .header-tactics-container {
         padding: 50px;
     }
-    .fa-user {
-        background-color: white;
-        border-radius: 20px;
-        padding: 10px;
-        color: black;
-    }
 
     .bg-div {
         z-index: -100;
@@ -77,10 +70,6 @@
     h1 {
         font-weight: 700;
         font-size: 170px;
-    }
-
-    .fa-solid {
-        border: 10px white;
     }
 
     .bg-circle {
@@ -99,7 +88,7 @@
         left: 800px;
         top: 40px;
         opacity: 0.54;
-        z-index: -100;
+        z-index: -99;
     }
 
     .bg-left-1 {
@@ -130,7 +119,7 @@
     }
 
     .black-header-container img {
-        opacity: 0.6;
+        opacity: 0.8;
         z-index: -500;
 
     }

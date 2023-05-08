@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\View\Components\comments;
 
 class CommentController extends Controller
 {
@@ -13,9 +14,12 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($postId)
     {
-        //
+        $post = Post::findOrFail($postId);
+        $comments = $post->comments;
+
+        return view('comments.index', compact('post', 'comments'));
     }
 
     /**
@@ -25,7 +29,6 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,22 +38,25 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
-            'title' => 'required',
-            'body' => 'required',
             'post_id' => 'required|exists:posts,id',
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
         ]);
 
         $comment = new Comment();
-        $comment->title = $request->input('title');
-        $comment->body = $request->input('body');
         $comment->post_id = $request->input('post_id');
-        $comment->user_id = auth()->id();
+        $comment->name = $request->input('name');
+        $comment->email = $request->input('email');
+        $comment->message = $request->input('message');
         $comment->save();
 
-        return redirect()->back()->with('success', 'Comment added successfully!');
+        return redirect(route('comment.index'))->with('success', 'Comment added successfully!');
     }
+
 
     /**
      * Display the specified resource.
@@ -69,8 +75,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post, Comment $comment) {
-        return view('comments.edit', compact('post', 'comment')); 
+    public function edit(Post $post, Comment $comment)
+    {
+        return view('comments.edit', compact('post', 'comment'));
     }
 
     /**
@@ -80,7 +87,8 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Post $post, Comment $comment, Request $request) {
+    public function update(Post $post, Comment $comment, Request $request)
+    {
         $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
@@ -103,7 +111,7 @@ class CommentController extends Controller
     public function destroy(Post $post, Comment $comment)
     {
         $comment->delete();
-        
+
         return redirect()->route('posts.show', $post->id);
     }
 }
