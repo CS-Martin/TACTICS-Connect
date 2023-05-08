@@ -18,27 +18,39 @@
                     </div>
 
                     <div class="card-profile position-relative border-bottom accordion">
-                        <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle">
+                        <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle d-flex justify-content-center align-items-center">
                         <h3 class="username-style margin-0 mt-3">Martin Edgar Atole</h3>
                         <p class="gray-text">@UserID</p>
                         <p class="gray-text">Lorem ipsum dolor sit amet. Et dolor eligendi aut quae mollitia aut
                             consequatur consequatur ut corrupti voluptatem qui illum autem. </p>
-                        <button type="button" class="border-0 rounded-circle p-2 position-absolute"
+                        <button type="button" class="border-0 rounded-circle p-2 position-absolute text-primary-color"
                             data-bs-toggle="dropdown" aria-expanded="false" style="right: 0; top:0;">
                             <i class="fa-solid fa-pen-to-square fs-5"></i>
                         </button>
                     </div>
 
-                    <div class="my-3 position-relative">
-                        <h4>About me</h4>
-                        <p class="mt-3">Education</p>
-                        <h4>Status</h4>
-                        <p>---</p>
-                        <h4>Expected year of Graduation</h4>
-                        <p>2025</p>
-                        <h4>More about me</h4>
-                        <p>---</p>
-                        <button type="button" class="border-0 rounded-circle p-2 position-absolute"
+                    <div class="my-3 position-relative border-bottom">
+                        <h5 class="m-0">About me</h5>
+                        <ul class="list-style">
+                            <div>
+                                <li class="text-decoration-none">Education</li>
+                                <h6>---</h6>
+                            </div>
+                            <div>
+                                <li>Status</li>
+                                <h6>---</h6>
+                            </div>
+                            <div>
+                                <li>Expected year of Graduation</li>
+                                <h6>---</h6>
+                            </div>
+                            <div>
+                                <li>More about me</li>
+                                <h6>---</h6>
+                            </div>
+                        </ul>
+
+                        <button type="button" class="border-0 rounded-circle p-2 position-absolute text-primary-color"
                             data-bs-toggle="dropdown" aria-expanded="false" style="right: 0; top:0;">
                             <i class="fa-solid fa-pen-to-square fs-5"></i>
                         </button>
@@ -77,5 +89,9 @@
         margin-top: 90px;
         margin-left: 180px;
         margin-right: 300px;
+    }
+
+    .list-style {
+        list-style-type: none;
     }
 </style>
