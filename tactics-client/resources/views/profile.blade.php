@@ -18,7 +18,26 @@
                     </div>
 
                     <div class="card-profile position-relative border-bottom accordion">
-                        <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle d-flex justify-content-center align-items-center">
+                        <div>
+                            @if (auth()->user()->profile_picture)
+                                <button class="profile-overlay">
+                                    <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
+                                        class="profile-overlay profile-picture rounded-circle d-flex justify-content-center align-items-center">
+                                </button>
+                            @else
+                                <img src="{{ asset('img/default-user-picture.jpg') }}"
+                                    class="profile-picture rounded-circle d-flex justify-content-center align-items-center">
+                            @endif
+
+                        </div>
+
+                        <form action="{{ route('upload.profile.picture') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="profile_picture">
+                            <button type="submit">Upload</button>
+                        </form>
+
                         <h3 class="username-style margin-0 mt-3">Martin Edgar Atole</h3>
                         <p class="gray-text">@UserID</p>
                         <p class="gray-text">Lorem ipsum dolor sit amet. Et dolor eligendi aut quae mollitia aut
@@ -80,6 +99,7 @@
 
 <style scoped>
     .profile-container {
+        background-color: #f4f4f4;
         height: 100vh;
         margin: 0;
         overflow: hidden;
@@ -94,4 +114,29 @@
     .list-style {
         list-style-type: none;
     }
+
+    .profile-picture {
+        height: 12rem;
+        width: auto;
+    }
+
+    /* .profile-overlay {
+        position: relative;
+    }
+
+    .profile-overlay::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .profile-overlay:hover::before {
+        opacity: 1;
+    } */
 </style>
