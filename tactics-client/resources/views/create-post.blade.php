@@ -14,9 +14,9 @@
             <textarea name="body" class="form-control" placeholder="Leave a comment here" id="body" required></textarea>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label for="image">Image:</label>
-            <input type="file" name="image" id="image" accept="image/*">
+            <input type="file" name="image" id="image" accept="image/*" class="form-control">
         </div>
         
         {{-- footer --}}
