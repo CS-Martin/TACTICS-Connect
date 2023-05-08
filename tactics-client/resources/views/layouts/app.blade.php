@@ -346,7 +346,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end bg-dark" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item gray-text" href="">
+                                    <a class="dropdown-item gray-text" href="{{ route('profile') }}">
                                         <i class="fa-solid fa-user"></i>
                                         Profile
                                     </a>

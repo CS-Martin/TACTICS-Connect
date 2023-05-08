@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,5 @@ Route::match(['GET', 'POST'], '/comments', [CommentController::class, 'store'])-
 Route::get('/forum/comments/{id}', [CommentController::class, 'index'])->name('comment');
 Route::put('/like', [PostController::class, 'like'])->name('posts.like');
 Route::put('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

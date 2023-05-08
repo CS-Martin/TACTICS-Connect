@@ -144,8 +144,9 @@
                                     </div>
                                     <div class="d-flex">
                                         <div class="me-3">
-                                            <button class="p-2 border-0 rounded-pill comment-btn px-4">
-                                                <a href="/forum/comments/{{ $post->id }}">Comment</a>
+                                            <button class="p-2 border-0 rounded-pill comment-btn px-4 gray-text">
+                                                Comment
+                                                {{-- <a href="/forum/comments/{{ $post->id }}" class="p-2 border-0 rounded-pill comment-btn px-4">Comment</a> --}}
                                             </button>
                                         </div>
                                         <div class="">
@@ -156,13 +157,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                @foreach ($post->comments as $comment)
-                                    <div>
-                                        <h3>{{ $comment->name }}</h3>
-                                        <p>{{ $comment->message }}</p>
-                                    </div>
-                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -184,14 +178,7 @@
     .forum-header {
         margin-top: 90px;
         margin-left: 180px;
-        margin-right: 390px;
-    }
-
-    /* Sidebar */
-    .sidebar-hero {
-        width: 15%;
-        height: 100%;
-        margin-left: 120px;
+        margin-right: 300px;
     }
 
     .post-section {
@@ -207,19 +194,8 @@
         width: auto;
     }
 
-    .create-post-btn {
-        background-color: #4BA4A8;
-        border-radius: 8px;
-        border: none;
-    }
-
     .title {
         color: rgba(30, 30, 30, 0.53);
-    }
-
-    .sidebar-btn {
-        color: #888888;
-        background: none;
     }
 
     .sideActive {
