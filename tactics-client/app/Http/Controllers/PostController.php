@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
         return view('post.index', compact('posts'));
     }
 
@@ -51,6 +51,7 @@ class PostController extends Controller
         ]);
 
         $post = new Post();
+        $post->user_id = auth()->user()->id;
         $post->name = $request->user()->name;
         $post->title = $validatedData['title'];
         $post->body = $validatedData['body'];

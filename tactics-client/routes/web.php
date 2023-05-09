@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactUs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
@@ -62,6 +63,5 @@ Route::match(['GET', 'POST'], '/posts', [PostController::class, 'store'])->name(
 Route::put('/like', [PostController::class, 'like'])->name('posts.like');
 Route::put('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
 
-
-
+Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload.profile.picture');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
