@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'TACTICS-Connect') }}</title>
+    {{-- Title Icon --}}
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

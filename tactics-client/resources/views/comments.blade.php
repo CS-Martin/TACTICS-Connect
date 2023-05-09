@@ -1,24 +1,26 @@
 {{-- @foreach (comments as comment) --}}
 {{-- Comments contents here --}}
 <div class="comments-section mb-3">
-    <div class="d-flex mb-2 w-75">
-        <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle profile-pic me-3"><img src=""
-            alt="">
-        <div class="comments rounded px-4 d-flex justify-content-center align-items-center">
-            {{-- Comment body goes here --}}
-            <p class="">Hi I'm Martin Edgar </p>
+    @foreach ($post->comments as $comment)
+        <div class="d-flex mb-2 w-75">
+            <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle profile-pic me-3">
+            <div class="comments rounded px-4 d-flex justify-content-between align-items-center w-100">
+                <div>
+                    {{-- Comment body goes here --}}
+                    <p class="mb-0">{{ $comment->body }}</p>
+                    <p class="text-muted">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</p>
+                </div>
+                <div>
+                    {{-- Edit and delete buttons --}}
+                    <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button>DELETE</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="d-flex mb-3 w-75">
-        <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle profile-pic me-3"><img
-            src="" alt="">
-        <div class="comments rounded px-4 d-flex justify-content-center align-items-center">
-            {{-- Comment body goes here --}}
-            <p class="">Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota
-                Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota Pota </p>
-        </div>
-    </div>
+    @endforeach
 
 </div>
 {{-- @endforeach --}}
@@ -26,12 +28,13 @@
 {{-- commenting input here --}}
 <div class="card card-body mb-3">
     {{-- User's profile picture here --}}
-    <div class="d-flex">
-        <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle profile-pic me-3"><img
-            src="" alt="">
-        <textarea class="comment-field" name="comments" id="commentsArea"
-            placeholder="Write your comment here...."></textarea>
-    </div>
+    <form id="comment-form-{{ $post->id }}" class="w-100 h-100 d-flex" method="post"
+        action="{{ route('comments.store') }}">
+        @csrf
+        <input type="hidden" name="post_id" value="{{ $post->id }}">
+        <textarea class="text-break" name="body"></textarea>
+        <button type="submit">Submit</button>
+    </form>
 </div>
 
 
@@ -39,9 +42,43 @@
     $('#commentsArea').emojioneArea({
         pickerPosition: 'bottom'
     });
+
+    $(function() {
+        $('#comment-form-{{ $post->id }}').submit(function(event) {
+            event.preventDefault();
+            var form = $(this); // get the current form
+            var post_id = form.find('input[name=post_id]').val();
+            var body = form.find('textarea[name=body]').val();
+            console.log(post_id);
+            console.log(body);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('comments.store') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    post_id: post_id,
+                    body: body
+                },
+                success: function(response) {
+                    return response;
+                },
+                error: function(response) {
+                    return response;
+                }
+            });
+        });
+    });
 </script>
 
 <style scoped>
+    textarea {
+        resize: vertical;
+        overflow: auto;
+        max-height: 500px;
+    }
+
     .profile-pic {
         width: 2rem;
         height: 2rem;
@@ -57,10 +94,5 @@
 
     .comments p {
         margin: 0;
-    }
-
-    .comment-field {
-        height: 60px;
-        width: 100%;
     }
 </style>
