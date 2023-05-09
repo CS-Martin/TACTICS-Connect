@@ -17,19 +17,14 @@
 {{-- commenting input here --}}
 <div class="card card-body mb-3">
     {{-- User's profile picture here --}}
-    {{-- <form action="" class="w-100 h-100 d-flex">
-        <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle profile-pic me-3"><img
-            src="" alt="">
-        <textarea class="text-break" name="comments" id="commentsArea"
-            placeholder="Write your comment here...."></textarea>
-        <button type="submit">Post Comment</button>
-    </form> --}}
-    <form id="comment-form" class="w-100 h-100 d-flex" method="post" action="{{ route('comments.store') }}">
+    <form id="comment-form-{{ $post->id }}" class="w-100 h-100 d-flex" method="post"
+        action="{{ route('comments.store') }}">
         @csrf
         <input type="hidden" name="post_id" value="{{ $post->id }}">
-        <textarea class="text-break" name="body_"></textarea>
+        <textarea class="text-break" name="body"></textarea>
         <button type="submit">Submit</button>
     </form>
+
 </div>
 
 
@@ -39,10 +34,11 @@
     });
 
     $(function() {
-        $('#comment-form').submit(function(event) {
+        $('form.comment-form').submit(function(event) {
             event.preventDefault();
-            var post_id = $('input[name=post_id]').val();
-            var body = $('textarea[name=body_]').val();
+            var form = $(this); // get the current form
+            var post_id = form.find('input[name=post_id]').val();
+            var body = form.find('textarea[name=body]').val();
             console.log(post_id);
             console.log(body);
             $.ajax({
@@ -53,8 +49,7 @@
                 },
                 data: {
                     post_id: post_id,
-                    body: body,
-                    _token: '{{ csrf_token() }}'
+                    body: body
                 },
                 success: function(response) {
                     return response;

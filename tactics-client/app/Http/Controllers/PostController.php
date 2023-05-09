@@ -66,11 +66,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $post = Post::findOrFail($id);
-        $comments = $post->comments()->with('user')->get();
-        return view('posts.show', compact('post', 'comments'));
+        $posts = Post::all();
+        return view('post', ['posts' => $posts]);
     }
 
     /**

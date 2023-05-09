@@ -3,7 +3,7 @@
 <body class="forum-container">
     <div class="">
         <div class="forum-header d-flex justify-content-between">
-            <h2 class="title">ARTICLES & DISCUSSIONS</h2>
+            <h2 class="title ms-3">ARTICLES & DISCUSSIONS</h2>
             <button type="button" data-bs-toggle="modal" data-bs-target="#createPostModal"
                 class="create-post-btn p-2 px-4 text-white">
                 <i class="fa-regular fa-pen-to-square me-1 fw-bolder fs-5"></i>
@@ -77,6 +77,7 @@
 
     .title {
         color: rgba(30, 30, 30, 0.53);
+        font-family: 'Gilroy-bold', sans-serif;
     }
 
     .sideActive {
