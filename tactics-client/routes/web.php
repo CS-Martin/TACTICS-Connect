@@ -46,13 +46,18 @@ Route::get('/contact-us', [ContactUs::class, 'index'])->name('contact-us');
  * @uses Routes for Forum/Post controller
  */
 
+
 // To edit posts
+
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::put('/posts/{id}/edit', [PostController::class, 'update'])->name('posts.update');
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
 
 // To Delete posts
 Route::delete('/forum/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+// to delete comments
+Route::delete('/comments/{comment_id}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
 /** 
  * @return forum page 

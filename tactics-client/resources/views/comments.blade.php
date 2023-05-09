@@ -3,14 +3,25 @@
 <div class="comments-section mb-3">
     @foreach ($post->comments as $comment)
         <div class="d-flex mb-2 w-75">
-            <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle profile-pic me-3"><img
-                src="" alt="">
-            <div class="comments rounded px-4 d-flex justify-content-center align-items-center">
-                {{-- Comment body goes here --}}
-                <p class="">{{ $comment->body }}</p>
+            <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle profile-pic me-3">
+            <div class="comments rounded px-4 d-flex justify-content-between align-items-center w-100">
+                <div>
+                    {{-- Comment body goes here --}}
+                    <p class="mb-0">{{ $comment->body }}</p>
+                    <p class="text-muted">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</p>
+                </div>
+                <div>
+                    {{-- Edit and delete buttons --}}
+                    <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button>DELETE</button>
+                    </form>
+                </div>
             </div>
         </div>
     @endforeach
+
 </div>
 {{-- @endforeach --}}
 
@@ -24,7 +35,6 @@
         <textarea class="text-break" name="body"></textarea>
         <button type="submit">Submit</button>
     </form>
-
 </div>
 
 
@@ -34,7 +44,7 @@
     });
 
     $(function() {
-        $('form.comment-form').submit(function(event) {
+        $('#comment-form-{{ $post->id }}').submit(function(event) {
             event.preventDefault();
             var form = $(this); // get the current form
             var post_id = form.find('input[name=post_id]').val();

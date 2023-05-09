@@ -81,7 +81,8 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        // $ = Post::find($id);
+        // return view('posts.show', compact('post'));
     }
 
     /**
@@ -123,10 +124,10 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post, Comment $comment)
+    public function destroy($comment)
     {
+        $comment = Comment::findOrFail($comment);
         $comment->delete();
-
-        return redirect()->route('posts.show', $post->id);
+        return redirect('/forum')->with('success', 'Post deleted successfully!');
     }
 }
