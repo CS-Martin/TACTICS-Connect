@@ -18,7 +18,7 @@
 > Goal: To unite TACTICS, disseminate information, and
 
 ### **Project Lead**:
-- 
+- Maricel Fornaleza
 
 ### **Core Members:**
 - Martin Edgar Atole
