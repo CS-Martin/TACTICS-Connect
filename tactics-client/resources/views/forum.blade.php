@@ -58,6 +58,7 @@
 
 <style scoped>
     .forum-container {
+        background-color: #f4f4f4;
         height: 100vh;
         margin: 0;
         overflow: hidden;

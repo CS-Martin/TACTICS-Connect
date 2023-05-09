@@ -31,9 +31,6 @@
         <div class="d-flex container-fluid p-3">
             <div class="sidebar-hero col-3 p-3">
                 <div class="mb-1">
-                    <div class="menu-btn">
-                    </div>
-
                     <div class="card-profile position-relative border-bottom accordion">
                         <div>
                             @if (auth()->user()->profile_picture)
@@ -111,24 +108,28 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Header links --}}
             <div class="post-section px-3">
-                <ul class="nav nav-tabs nav-fill ">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Posts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link gray-text" href="">Comments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link gray-text" href="">Likes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link gray-text">Bookmarks</a>
-                    </li>
-                </ul>
-
+                <div class="">
+                    {{-- Header links --}}
+                    <ul class="nav nav-tabs nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link gray-text" aria-current="page" data-bs-toggle="collapse"
+                                href="#profileComments" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">Posts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gray-text">Comments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gray-text" href="">Likes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gray-text">Bookmarks</a>
+                        </li>
+                    </ul>
+                </div>
+                {{-- <div class="collapse" id="profileComments">
+                </div> --}}
                 @foreach ($posts->where('user_id', auth()->user()->id) as $post)
                     <div class="post my-3 p-3 position-relative">
                         <div class="d-flex">
@@ -177,7 +178,6 @@
                                         </ul>
                                     </div>
 
-
                                     {{-- It seems that I cannot put this edit-post modal div below it's button, so I'll be putting it here instead :> --}}
                                     <!-- Edit post modal -->
                                     <div class="modal fade" id="editPostModal" tabindex="-1"
@@ -186,7 +186,8 @@
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit a post
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit a
+                                                        post
                                                     </h1>
                                                     <button type="button" class="btn-close text-dark"
                                                         data-bs-dismiss="modal" aria-label="Close"></button>
@@ -383,5 +384,13 @@
 
     .username-style {
         margin: 0;
+    }
+
+    .nav.nav-tabs {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: #ffffff;
+        /* Replace with your desired background color */
     }
 </style>
