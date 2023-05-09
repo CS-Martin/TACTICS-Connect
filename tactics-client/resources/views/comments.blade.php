@@ -27,7 +27,7 @@
     <form id="comment-form" class="w-100 h-100 d-flex" method="post" action="{{ route('comments.store') }}">
         @csrf
         <input type="hidden" name="post_id" value="{{ $post->id }}">
-        <textarea class="text-break" name="body"></textarea>
+        <textarea class="text-break" name="body_"></textarea>
         <button type="submit">Submit</button>
     </form>
 </div>
@@ -42,16 +42,19 @@
         $('#comment-form').submit(function(event) {
             event.preventDefault();
             var post_id = $('input[name=post_id]').val();
-            var body = $('input[name=body]').val();
+            var body = $('textarea[name=body_]').val();
             console.log(post_id);
             console.log(body);
             $.ajax({
                 type: "POST",
                 url: "{{ route('comments.store') }}",
-                _token: "{{ csrf_token() }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 data: {
                     post_id: post_id,
-                    body: body
+                    body: body,
+                    _token: '{{ csrf_token() }}'
                 },
                 success: function(response) {
                     return response;
