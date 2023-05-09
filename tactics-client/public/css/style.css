@@ -65,6 +65,11 @@
     height: 760px;
     overflow: auto;
 }
+.post-section-header-links {
+    width: 60%;
+    height: 760px;
+    overflow: auto;
+}
 
 .sidebar-btn {
     color: #888888;
