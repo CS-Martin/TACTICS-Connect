@@ -8,6 +8,23 @@
                 <i class="fa-regular fa-pen-to-square me-1 fw-bolder fs-5"></i>
                 Create new Post
             </button>
+
+            {{-- Modal for creating a post --}}
+            <div class="modal fade" id="createPostModal" tabindex="-1" data-bs-backdrop="static"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Create a post</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            @include('create-post')
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Sidebar -->
@@ -26,7 +43,7 @@
                                     <button class="border-0" onclick="openFileInput(event)">
                                         <div class="profile-picture-container">
                                             <div class="profile-picture-overlay rounded-circle">
-                                                <i class="fas fa-edit"></i> <!-- Replace this with your edit icon -->
+                                                <i class="fas fa-edit"></i>
                                             </div>
                                             <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
                                                 class="profile-picture rounded-circle">
@@ -36,8 +53,23 @@
                                         accept="image/*" onchange="uploadPicture(event)">
                                 </form>
                             @else
-                                <img src="{{ asset('img/default-user-picture.jpg') }}"
-                                    class="profile-picture rounded-circle d-flex justify-content-center align-items-center">
+                                {{-- default user's profile picture --}}
+                                <form id="upload-form" action="{{ route('upload.profile.picture') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <button class="border-0" onclick="openFileInput(event)">
+                                        <div class="profile-picture-container">
+                                            <div class="profile-picture-overlay rounded-circle">
+                                                <i class="fas fa-edit"></i>
+                                            </div>
+
+                                            <img src="{{ asset('img/default-user-picture.jpg') }}"
+                                                class="profile-picture rounded-circle d-flex justify-content-center align-items-center">
+                                        </div>
+                                    </button>
+                                    <input id="file-input" type="file" name="profile_picture" class="d-none"
+                                        accept="image/*" onchange="uploadPicture(event)">
+                                </form>
                             @endif
 
                         </div>
