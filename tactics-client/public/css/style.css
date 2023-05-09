@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.cdnfonts.com/css/gilroy-bold?styles=20876,20877,20878,20879,20880");
+@import url('https://fonts.cdnfonts.com/css/gilroy-bold');
 
 /* Chalk font for the announcements view */
 @import url("https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap");
@@ -62,7 +62,7 @@
 
 .post-section {
     width: 60%;
-    height: 720px;
+    height: 760px;
     overflow: auto;
 }
 

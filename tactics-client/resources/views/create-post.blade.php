@@ -15,7 +15,7 @@
         </div>
 
         <div class="form-group mb-2">
-            <label for="image">Image:</label>
+            <label for="image" class="gray-text">Image:</label>
             <input type="file" name="image" id="image" accept="image/*" class="form-control">
         </div>
         
