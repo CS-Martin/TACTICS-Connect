@@ -86,6 +86,14 @@
                         {{ $post->title }}
                     </h2>
                     <p> {{ $post->body }}</p>
+                    <div class="image-grid">
+                        @foreach ($post->images as $image)
+                            <div class="image-box">
+                                <img src="{{ asset('storage/' . $image->image_path) }}" alt="Post Image">
+                            </div>
+                        @endforeach
+                    </div>
+
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -103,9 +111,10 @@
                     </div>
                     <div class="d-flex">
                         <div class="me-3">
-                            <button class="p-2 border-0 rounded-pill comment-btn px-4 gray-text"
-                                data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
-                                aria-controls="collapseExample">
+                            <button id="comment-button-{{ $post->id }}"
+                                class="p-2 border-0 rounded-pill comment-btn px-4 gray-text" data-bs-toggle="collapse"
+                                data-bs-target="#collapseExample-{{ $post->id }}" aria-expanded="false"
+                                aria-controls="collapseExample-{{ $post->id }}">
                                 Comment
                                 {{-- <a href="/forum/comments/{{ $post->id }}" class="p-2 border-0 rounded-pill comment-btn px-4">Comment</a> --}}
                             </button>
@@ -120,13 +129,34 @@
             </div>
         </div>
     </div>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" id="collapseExample-{{ $post->id }}">
         @include('comments')
     </div>
 @endforeach
 
 
 <style scoped>
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .image-box {
+        width: 100%;
+        padding-bottom: 100%;
+        position: relative;
+    }
+
+    .image-box img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
+    }
+
     .post-section {
         width: 60%;
         height: 720px;

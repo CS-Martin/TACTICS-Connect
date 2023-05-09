@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\View\Components\comments;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -38,25 +39,39 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'post_id' => 'required|exists:posts,id',
+    //         'name' => 'required',
+    //         'email' => 'required|email',
+    //         'message' => 'required',
+    //     ]);
+
+    //     $comment = new Comment();
+    //     $comment->post_id = $request->input('post_id');
+    //     $comment->name = $request->input('name');
+    //     $comment->email = $request->input('email');
+    //     $comment->message = $request->input('message');
+    //     $comment->save();
+
+    //     return redirect(route('comment.index'))->with('success', 'Comment added successfully!');
+    // }
+
     public function store(Request $request)
     {
-        $request->validate([
-            'post_id' => 'required|exists:posts,id',
-            'name' => 'required',
-            'email' => 'required|email',
-            'message' => 'required',
-        ]);
-
         $comment = new Comment();
         $comment->post_id = $request->input('post_id');
-        $comment->name = $request->input('name');
-        $comment->email = $request->input('email');
-        $comment->message = $request->input('message');
+        $comment->user_id = Auth::id();
+        $comment->body = $request->input('body');
         $comment->save();
 
-        return redirect(route('comment.index'))->with('success', 'Comment added successfully!');
+        return response()->json([
+            'success' => true,
+            'comment' => $comment,
+            'user' => $comment->user,
+        ]);
     }
-
 
     /**
      * Display the specified resource.
@@ -66,7 +81,8 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        // $ = Post::find($id);
+        // return view('posts.show', compact('post'));
     }
 
     /**
@@ -108,10 +124,10 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post, Comment $comment)
+    public function destroy($comment)
     {
+        $comment = Comment::findOrFail($comment);
         $comment->delete();
-
-        return redirect()->route('posts.show', $post->id);
+        return redirect('/forum')->with('success', 'Post deleted successfully!');
     }
 }

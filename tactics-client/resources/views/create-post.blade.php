@@ -1,11 +1,11 @@
 <div class="container form-group">
-    <form action="/posts" method="POST">
+    <form action="/posts" method="POST" enctype="multipart/form-data">
         @csrf
         {{-- post title --}}
         <div class="mb-2">
             <label for="title" class="mb-1 gray-text">Title</label>
-            <input name="title" class="title-field form-control" placeholder="What's on your mind, {{ Auth::user()->name }}?"
-                id="title" required>
+            <input name="title" class="title-field form-control"
+                placeholder="What's on your mind, {{ Auth::user()->name }}?" id="title" required>
         </div>
 
         {{-- body/content --}}
@@ -16,9 +16,9 @@
 
         <div class="form-group mb-2">
             <label for="image" class="gray-text">Image:</label>
-            <input type="file" name="image" id="image" accept="image/*" class="form-control">
+            <input type="file" name="images[]" class="form-control" multiple>
         </div>
-        
+
         {{-- footer --}}
         <div class="">
             <button type="submit" class="w-100 p-2 create-post-btn text-white">Create Post</button>
@@ -28,7 +28,7 @@
 </div>
 
 <script>
-   $('#title').emojioneArea({
+    $('#title').emojioneArea({
         pickerPosition: 'right',
     });
 
