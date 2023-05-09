@@ -3,7 +3,14 @@
 <div class="comments-section mb-3">
     @foreach ($post->comments as $comment)
         <div class="d-flex mb-2 w-75">
-            <img src="{{ asset('img/martin.jpg') }}" alt="" class="rounded-circle profile-pic me-3">
+            <div class="card-profile ms-3">
+                @if ($post->user && optional($post->user)->profile_picture)
+                    <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
+                        class="profile-picture rounded-circle">
+                @else
+                    <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture rounded-circle">
+                @endif
+            </div>
             <div class="comments rounded px-4 d-flex justify-content-between align-items-center w-100">
                 <div>
                     {{-- Comment body goes here --}}
@@ -21,27 +28,32 @@
             </div>
         </div>
     @endforeach
-
 </div>
 {{-- @endforeach --}}
 
 {{-- commenting input here --}}
 <div class="card card-body mb-3">
     {{-- User's profile picture here --}}
-    <form id="comment-form-{{ $post->id }}" class="w-100 h-100 d-flex" method="post"
-        action="{{ route('comments.store') }}">
+    <form id="comment-form-{{ $post->id }}" class="d-flex" method="post" action="{{ route('comments.store') }}">
         @csrf
+        @if ($post->user && optional($post->user)->profile_picture)
+            <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
+                class="profile-picture-comment rounded-circle">
+        @else
+            <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture rounded-circle">
+        @endif
         <input type="hidden" name="post_id" value="{{ $post->id }}">
-        <textarea class="text-break" name="body"></textarea>
-        <button type="submit">Submit</button>
+        <textarea class="text-break form-control mx-2" name="body" id="comment-body-{{ $post->id }}"></textarea>
+        <button type="submit" class="btn-color border-0 text-white rounded">Submit</button>
     </form>
 </div>
 
 
 <script>
-    $('#commentsArea').emojioneArea({
+    $('#body').emojioneArea({
         pickerPosition: 'bottom'
     });
+
 
     $(function() {
         $('#comment-form-{{ $post->id }}').submit(function(event) {
@@ -79,9 +91,9 @@
         max-height: 500px;
     }
 
-    .profile-pic {
-        width: 2rem;
-        height: 2rem;
+    .profile-picture-comment {
+        width: auto;
+        height: 2.5rem;
     }
 
     .comments-section {

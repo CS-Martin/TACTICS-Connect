@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -43,11 +46,13 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $post = new Post();
@@ -57,8 +62,27 @@ class PostController extends Controller
         $post->body = $validatedData['body'];
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post created succesfully!');
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                if ($image->isValid()) {
+                    $imagePath = $image->store('images', 'public');
+
+                    $postImage = new Image();
+                    $postImage->image_path = $imagePath;
+                    $postImage->save();
+
+                    $post->images()->attach($postImage);
+                }
+            }
+        }
+
+        return redirect('/posts')->with('success', 'Post created successfully!');
     }
+
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -66,10 +90,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $post = Post::find($id);
-        return view('posts.show', compact('post'));
+        $posts = Post::all();
+
+        return view('post', ['posts' => $posts]);
     }
 
     /**

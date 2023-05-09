@@ -86,6 +86,14 @@
                         {{ $post->title }}
                     </h2>
                     <p> {{ $post->body }}</p>
+                    <div class="image-grid">
+                        @foreach ($post->images as $image)
+                            <div class="image-box">
+                                <img src="{{ asset('storage/' . $image->image_path) }}" alt="Post Image">
+                            </div>
+                        @endforeach
+                    </div>
+
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -128,6 +136,27 @@
 
 
 <style scoped>
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .image-box {
+        width: 100%;
+        padding-bottom: 100%;
+        position: relative;
+    }
+
+    .image-box img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
+    }
+
     .post-section {
         width: 60%;
         height: 720px;
