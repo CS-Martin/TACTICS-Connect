@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="post-section px-3">
-                <div class="">
+                <div class="backgroundColor">
                     {{-- Header links --}}
                     <ul class="nav nav-tabs nav-fill">
                         <li class="nav-item">
