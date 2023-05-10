@@ -259,9 +259,12 @@
                                     </div>
                                     <div class="d-flex">
                                         <div class="me-3">
-                                            <button class="p-2 border-0 rounded-pill comment-btn px-4 gray-text"
-                                                data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                                                aria-expanded="false" aria-controls="collapseExample">
+                                            <button id="comment-button-{{ $post->id }}"
+                                                class="p-2 border-0 rounded-pill comment-btn px-4 gray-text"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#collapseExample-{{ $post->id }}"
+                                                aria-expanded="false"
+                                                aria-controls="collapseExample-{{ $post->id }}">
                                                 Comment
                                                 {{-- <a href="/forum/comments/{{ $post->id }}" class="p-2 border-0 rounded-pill comment-btn px-4">Comment</a> --}}
                                             </button>
@@ -277,7 +280,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapseExample-{{ $post->id }}">
                         @include('comments')
                     </div>
                 @endforeach
