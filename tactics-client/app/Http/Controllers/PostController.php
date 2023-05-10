@@ -21,15 +21,41 @@ class PostController extends Controller
         return view('post.index', compact('posts'));
     }
 
-    public function like($id)
-    {
-        $post = Post::findOrFail($id);
-        $post->likes++;
-        $post->save();
+    // public function like($id)
+    // {
+    //     $post = Post::findOrFail($id);
+    //     $post->likes++;
+    //     $post->save();
 
-        return back();
+    //     return back();
+    // }
+
+    public function like(Request $request, $postId)
+    {
+        $post = Post::findOrFail($postId);
+
+        if (!session()->has('liked_post_' . $post->id)) {
+            $post->likes++;
+            $post->save();
+            session(['liked_post_' . $post->id => true]);
+            return redirect()->back()->with('success', 'Post liked!');
+        } else {
+            return redirect()->back()->with('error', 'You have already liked this post!');
+        }
     }
 
+    public function unlike(Request $request, $postId)
+    {
+        $post = Post::findOrFail($postId);
+        if (session()->has('liked_post_' . $post->id)) {
+            $post->likes--;
+            $post->save();
+            session()->forget('liked_post_' . $post->id);
+            return redirect()->back()->with('success', 'Post unliked!');
+        } else {
+            return redirect()->back()->with('error', 'You have not liked this post!');
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

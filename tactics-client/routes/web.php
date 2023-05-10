@@ -66,6 +66,7 @@ Route::get('/forum', [ForumController::class, 'index'])->name('forum');
 
 Route::match(['GET', 'POST'], '/posts', [PostController::class, 'store'])->name('posts.store');
 Route::put('/like', [PostController::class, 'like'])->name('posts.like');
+Route::put('/posts/{postId}/unlike', [PostController::class, 'unlike'])->name('posts.unlike');
 Route::put('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
 
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload.profile.picture');

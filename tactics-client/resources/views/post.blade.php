@@ -98,7 +98,7 @@
 
                 <div class="d-flex justify-content-between">
                     <div class="d-flex justify-content-center align-items-center">
-                        @if (!isset($_COOKIE['liked_post_' . $post->id]))
+                        {{-- @if (!isset($_COOKIE['liked_post_' . $post->id]))
                             <form action="{{ route('posts.like', $post->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -106,7 +106,25 @@
                                     <i class="fa-regular fa-thumbs-up"></i>
                                 </button>
                             </form>
+                        @endif --}}
+                        @if (!session()->has('liked_post_' . $post->id))
+                            <form action="{{ route('posts.like', $post->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="rounded-circle border-0 fs-4 like-btn d-flex me-3 p-2">
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('posts.unlike', $post->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="rounded-circle border-0 fs-4 unlike-btn d-flex me-3 p-2">
+                                    <i class="fa-regular fa-thumbs-down"></i>
+                                </button>
+                            </form>
                         @endif
+
                         <p class="m-0">{{ $post->likes }}</p>
                     </div>
                     <div class="d-flex">
