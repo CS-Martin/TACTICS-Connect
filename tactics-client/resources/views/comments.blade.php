@@ -6,7 +6,7 @@
             <div class="card-profile ms-3">
                 @if ($post->user && optional($post->user)->profile_picture)
                     <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
-                        class="profile-picture rounded-circle">
+                        class="profile-picture-comment rounded-circle">
                 @else
                     <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture rounded-circle">
                 @endif
@@ -93,7 +93,7 @@
 
     .profile-picture-comment {
         width: auto;
-        height: 2.5rem;
+        height: 3rem;
     }
 
     .comments-section {
