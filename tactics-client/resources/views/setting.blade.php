@@ -64,14 +64,12 @@
                     {{-- link account buttons --}}
                     <div class="p-3">
 
-                        <button class="w-25 row border-0 rounded p-3 facebook text-white">
-
-                            Connect to Facebook
-                        </button>
+                        <button class="w-25 row border-0 rounded p-3 facebook text-white">Connect to Facebook</button>
                         <button class="w-25 row border-0 rounded p-3 my-3 bg-dark text-white">Connect to Github</button>
                         <button class="w-25 row border-0 rounded p-3 linkedIn text-white">Connect to LinkedIn</button>
                     </div>
 
+                    {{-- Delete account section --}}
                     <div>
                         <h1>Delete Account</h1>
                         <p class="gray-text fw-light">Deleting your account will permanently erase all the data that you’ve
@@ -79,9 +77,8 @@
                             account.</p>
     
                         <button class="w-25 ms-1 row border-0 rounded p-3 bg-danger text-white">
-                            Connect to Facebook
+                            Delete Account 
                         </button>
-
                     </div>
                 </div>
                 <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-profile-list">

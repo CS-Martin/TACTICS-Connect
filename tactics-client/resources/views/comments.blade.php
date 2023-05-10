@@ -1,15 +1,15 @@
-{{-- @foreach (comments as comment) --}}
 {{-- Comments contents here --}}
 <div class="comments-section mb-3">
     @foreach ($post->comments as $comment)
         <div class="d-flex mb-2 w-75">
             <div class="card-profile ms-3">
-                @if ($post->user && optional($post->user)->profile_picture)
-                    <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
+                @if ($comment->user && $comment->user->profile_picture)
+                    <img src="{{ asset('storage/' . $comment->user->profile_picture) }}"
                         class="profile-picture-comment rounded-circle">
                 @else
-                    <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture rounded-circle">
+                    <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture-comment rounded-circle">
                 @endif
+
             </div>
             <div class="comments rounded px-4 d-flex justify-content-between align-items-center w-100">
                 <div>
@@ -29,18 +29,18 @@
         </div>
     @endforeach
 </div>
-{{-- @endforeach --}}
+
 
 {{-- commenting input here --}}
 <div class="card card-body mb-3">
     {{-- User's profile picture here --}}
     <form id="comment-form-{{ $post->id }}" class="d-flex" method="post" action="{{ route('comments.store') }}">
         @csrf
-        @if ($post->user && optional($post->user)->profile_picture)
-            <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
+        @if (auth()->user()->profile_picture)
+            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
                 class="profile-picture-comment rounded-circle">
         @else
-            <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture rounded-circle">
+            <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture-comment rounded-circle">
         @endif
         <input type="hidden" name="post_id" value="{{ $post->id }}">
         <textarea class="text-break form-control mx-2" name="body" id="comment-body-{{ $post->id }}"></textarea>
@@ -94,6 +94,11 @@
     .profile-picture-comment {
         width: auto;
         height: 3rem;
+    }
+
+    .profile-picture-comment-bf {
+        width: 5px;
+        height: auto;
     }
 
     .comments-section {
