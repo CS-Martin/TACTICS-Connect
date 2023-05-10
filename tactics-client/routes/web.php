@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BookmarkController;
 
 /*
@@ -75,3 +76,12 @@ Route::post('/bookmarks/add', [BookmarkController::class, 'add'])->name('bookmar
 
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload.profile.picture');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+/**
+ * @return profile page
+ */
+Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+Route::delete('/account/delete', [UserController::class, 'destroy'])->name('account.delete');
+
+// Change password
+Route::post('/account/update-password', [UserController::class, 'updatePassword'])->name('account.updatePassword');

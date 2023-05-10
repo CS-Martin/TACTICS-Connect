@@ -3,7 +3,7 @@
         <!-- Add position-relative class here -->
         <!-- profile -->
         <div class="d-flex">
-            <div class="card-profile ms-3">
+            <div class="card-profile mt-2 ms-3">
                 @if ($post->user && optional($post->user)->profile_picture)
                     <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
                         class="profile-picture rounded-circle">
@@ -72,7 +72,7 @@
                     <div>
                         <!-- Name & time posted -->
                         <div class="mt-1">
-                            <h6 class="username-style margin-0">{{ $post->name }}</h6>
+                            <h6 class="username-style margin-0">{{ $post->name }} {{ $post->surname }}</h6>
                             <small class="gray-text">
                                 <i class="fa-solid fa-clock me-1"></i>
                                 {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
@@ -82,10 +82,12 @@
                 </div>
 
                 <div class="my-3">
-                    <h2>
+                    <h2 class="post-title">
                         {{ $post->title }}
                     </h2>
-                    <p> {{ $post->body }}</p>
+                    <div class="post-body">
+                        <p>{{ $post->body }}</p>
+                    </div>
                     <div class="image-grid">
                         @foreach ($post->images as $image)
                             <div class="image-box">
@@ -93,7 +95,6 @@
                             </div>
                         @endforeach
                     </div>
-
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -176,25 +177,10 @@
 </script>
 
 <style scoped>
-    .image-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 10px;
-    }
-
-    .image-box {
-        width: 100%;
-        padding-bottom: 100%;
-        position: relative;
-    }
-
-    .image-box img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: inherit;
-        height: inherit;
-        object-fit: cover;
+    .post-body {
+        max-height: 10em;
+        /* Adjust the value as needed */
+        overflow: auto;
     }
 
     .post-section {
@@ -208,6 +194,11 @@
         border-radius: 23px;
         height: auto;
         width: auto;
+    }
+
+    .profile-picture {
+        width: auto;
+        height: auto;
     }
 
     .like-btn {
@@ -245,7 +236,6 @@
     }
 
     .card-profile img {
-        margin-top: 25%;
         width: inherit;
     }
 

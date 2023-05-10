@@ -1,21 +1,20 @@
-{{-- @foreach (comments as comment) --}}
 {{-- Comments contents here --}}
 <div class="comments-section mb-3">
     @foreach ($post->comments as $comment)
         <div class="d-flex mb-2 w-75">
             <div class="card-profile ms-3">
-                @if ($post->user && optional($post->user)->profile_picture)
-                    <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
-                        class="profile-picture rounded-circle">
+                @if ($comment->user && $comment->user->profile_picture)
+                    <img src="{{ asset('storage/' . $comment->user->profile_picture) }}"
+                        class="profile-picture-comment rounded-circle">
                 @else
-                    <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture rounded-circle">
+                    <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture-comment rounded-circle">
                 @endif
+
             </div>
-            <div class="comments rounded px-4 d-flex justify-content-between align-items-center w-100">
+            <div class="comments rounded-pill px-4 d-flex justify-content-between align-items-center w-100">
                 <div>
                     {{-- Comment body goes here --}}
                     <p class="mb-0">{{ $comment->body }}</p>
-                    <p class="text-muted">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</p>
                 </div>
                 <div>
                     {{-- Edit and delete buttons --}}
@@ -27,24 +26,27 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex text-start px-5 ms-5">
+            <small class="text-muted">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
+        </div>
     @endforeach
 </div>
-{{-- @endforeach --}}
 
 {{-- commenting input here --}}
 <div class="card card-body mb-3">
     {{-- User's profile picture here --}}
     <form id="comment-form-{{ $post->id }}" class="d-flex" method="post" action="{{ route('comments.store') }}">
         @csrf
-        @if ($post->user && optional($post->user)->profile_picture)
-            <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
+        @if (auth()->user()->profile_picture)
+            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
                 class="profile-picture-comment rounded-circle">
         @else
-            <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture rounded-circle">
+            <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture-comment rounded-circle">
         @endif
         <input type="hidden" name="post_id" value="{{ $post->id }}">
         <textarea class="text-break form-control mx-2" name="body" id="comment-body-{{ $post->id }}"></textarea>
-        <button type="submit" class="btn-color border-0 text-white rounded">Submit</button>
+        <button type="submit" class="btn-color border-0 text-white rounded submit-button"><i
+                class="fa-solid fa-paper-plane"></i></button>
     </form>
 </div>
 
@@ -91,9 +93,8 @@
         max-height: 500px;
     }
 
-    .profile-picture-comment {
-        width: auto;
-        height: 2.5rem;
+    .submit-button {
+        width: 6rem;
     }
 
     .comments-section {
@@ -101,7 +102,7 @@
     }
 
     .comments {
-        background: rgba(0, 0, 0, 0.151);
+        background: rgba(0, 0, 0, 0.062);
     }
 
     .comments p {
