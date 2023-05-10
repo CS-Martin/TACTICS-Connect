@@ -4849,9 +4849,8 @@ textarea.form-control-lg {
 }
 .list-group-item.active {
   z-index: 2;
-  color: var(--bs-list-group-active-color);
-  background-color: var(--bs-list-group-active-bg);
-  border-color: var(--bs-list-group-active-border-color);
+  background-color: transparent;
+  border-left: solid 3px #4ba4a8;  ;
 }
 .list-group-item + .list-group-item {
   border-top-width: 0;

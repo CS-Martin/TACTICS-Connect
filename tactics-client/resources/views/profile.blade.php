@@ -75,9 +75,26 @@
                         <p class="gray-text">Lorem ipsum dolor sit amet. Et dolor eligendi aut quae mollitia aut
                             consequatur consequatur ut corrupti voluptatem qui illum autem. </p>
                         <button type="button" class="border-0 rounded-circle p-2 position-absolute text-primary-color"
-                            data-bs-toggle="dropdown" aria-expanded="false" style="right: 0; top:0;">
+                            data-bs-toggle="modal" data-bs-target="#editProfile" style="right: 0; top:0;">
                             <i class="fa-solid fa-pen-to-square fs-5"></i>
                         </button>
+
+                    </div>
+                    {{-- Modal for creating a post --}}
+                    <div class="modal fade" id="editProfile" tabindex="-1" data-bs-backdrop="static"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create a post</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    @include('edit-profile')
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="my-3 position-relative border-bottom">
@@ -216,6 +233,14 @@
                                         {{ $post->title }}
                                     </h2>
                                     <p> {{ $post->body }}</p>
+                                    <div class="image-grid">
+                                        @foreach ($post->images as $image)
+                                            <div class="image-box">
+                                                <img src="{{ asset('storage/' . $image->image_path) }}"
+                                                    alt="Post Image">
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
 
                                 <div class="d-flex justify-content-between">

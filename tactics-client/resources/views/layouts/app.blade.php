@@ -361,7 +361,7 @@
                                         </span>Notifications
                                     </a>
 
-                                    <a class="dropdown-item gray-text" href="">
+                                    <a class="dropdown-item gray-text" href="{{ route('setting') }}">
                                         <i class="fa-solid fa-gear"></i>
                                         Settings
                                     </a>

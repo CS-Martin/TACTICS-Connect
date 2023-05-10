@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +71,8 @@ Route::put('/posts/{id}/like', [PostController::class, 'like'])->name('posts.lik
 
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload.profile.picture');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+/**
+ * @return profile page
+ */
+Route::get('/setting', [SettingController::class, 'index'])->name('setting');
