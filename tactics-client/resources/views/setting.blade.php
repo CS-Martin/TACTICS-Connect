@@ -54,7 +54,7 @@
 
                     {{-- email --}}
                     <div class="p-4 d-flex">
-                        <h5 class="m-0 p-1">meatole.cs@gmail.com</h5>
+                        <h5 class="m-0 p-1">{{ auth()->user()->email }}</h5>
                         <small class="verified rounded p-1 ms-2 text-white">verified</small>
                     </div>
 

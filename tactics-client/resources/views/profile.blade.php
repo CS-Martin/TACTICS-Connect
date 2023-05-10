@@ -70,7 +70,9 @@
                             @endif
 
                         </div>
-                        <h3 class="username-style margin-0 mt-3">Martin Edgar Atole</h3>
+                        <h3 class="username-style margin-0 mt-3">
+                            {{ auth()->user()->name }} {{ auth()->user()->surname }}
+                        </h3>
                         <p class="gray-text">@UserID{ TC{{ auth()->user()->id }} }</p>
                         <p class="gray-text">Lorem ipsum dolor sit amet. Et dolor eligendi aut quae mollitia aut
                             consequatur consequatur ut corrupti voluptatem qui illum autem. </p>
@@ -257,7 +259,7 @@
                                         @endif
                                         <p class="">{{ $post->likes }}</p>
                                     </div>
-                                    
+
                                     {{-- Comment button --}}
                                     <div class="d-flex">
                                         <div class="me-3">

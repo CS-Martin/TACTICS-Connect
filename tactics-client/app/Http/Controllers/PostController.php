@@ -58,6 +58,7 @@ class PostController extends Controller
         $post = new Post();
         $post->user_id = auth()->user()->id;
         $post->name = $request->user()->name;
+        $post->surname = $request->user()->surname;
         $post->title = $validatedData['title'];
         $post->body = $validatedData['body'];
         $post->save();

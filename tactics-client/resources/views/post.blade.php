@@ -72,7 +72,7 @@
                     <div>
                         <!-- Name & time posted -->
                         <div class="mt-1">
-                            <h6 class="username-style margin-0">{{ $post->name }}</h6>
+                            <h6 class="username-style margin-0">{{ $post->name }} {{ $post->surname }}</h6>
                             <small class="gray-text">
                                 <i class="fa-solid fa-clock me-1"></i>
                                 {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}

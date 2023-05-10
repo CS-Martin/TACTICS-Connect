@@ -218,8 +218,8 @@
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     {{-- Name input field --}}
-                                                                    <div class="input-hero register-input-hero">
-                                                                        <div class="form-floating">
+                                                                    <div class="input-hero register-input-hero d-flex gap-2">
+                                                                        <div class="form-floating w-50">
                                                                             <input id="name" type="text"
                                                                                 placeholder="Name"
                                                                                 class="form-control register-form-control @error('name') is-invalid @enderror"
@@ -227,38 +227,28 @@
                                                                                 value="{{ old('name') }}" required
                                                                                 autocomplete="name" autofocus>
                                                                             <label for="name">Name</label>
-
-                                                                            {{-- Surname --}}
-
                                                                         </div>
-
                                                                         @error('name')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
                                                                             </span>
                                                                         @enderror
 
-                                                                        {{-- Surname --}}
-                                                                        <div class="row mb-3">
-                                                                            {{-- Surname input field --}}
-                                                                            <div class="input-hero register-input-hero">
-                                                                                <div class="form-floating">
-                                                                                    <input id="surname" type="text"
-                                                                                        placeholder="Surname"
-                                                                                        class="form-control register-form-control @error('surname') is-invalid @enderror"
-                                                                                        name="surname"
-                                                                                        value="{{ old('surname') }}"
-                                                                                        required autocomplete="surname">
-                                                                                    <label for="surname">Surname</label>
-                                                                                </div>
-                                                                                @error('surname')
-                                                                                    <span class="invalid-feedback"
-                                                                                        role="alert">
-                                                                                        <strong>{{ $message }}</strong>
-                                                                                    </span>
-                                                                                @enderror
-                                                                            </div>
+                                                                        {{-- Surname input field --}}
+                                                                        <div class="form-floating w-50">
+                                                                            <input id="surname" type="text"
+                                                                                placeholder="Surname"
+                                                                                class="form-control register-form-control @error('surname') is-invalid @enderror"
+                                                                                name="surname"
+                                                                                value="{{ old('surname') }}" required
+                                                                                autocomplete="surname">
+                                                                            <label for="surname">Surname</label>
                                                                         </div>
+                                                                        @error('surname')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
 
                                                                     </div>
                                                                 </div>
