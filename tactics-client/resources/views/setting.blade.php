@@ -9,8 +9,8 @@
             <div class="mb-1">
                 <div class="row">
                     <div class="col-4 w-100">
-                        <h5>Account</h5>
                         <div class="list-group  ms-3" id="list-tab" role="tablist">
+                            <h5>Account</h5>
                             <div>
                                 <a class="list-group-item list-group-item-action backgroundColor active"
                                     id="list-home-list" data-bs-toggle="list" href="#list-setting" role="tab"
@@ -54,8 +54,8 @@
 
                     {{-- email --}}
                     <div class="p-4 d-flex">
-                        <h5 class="m-0 p-1">meatole.cs@gmail.com</h5>
-                        <small class="verified rounded p-1 ms-2">verified</small>
+                        <h5 class="m-0 p-1">{{ auth()->user()->email }}</h5>
+                        <small class="verified rounded p-1 ms-2 text-white">verified</small>
                     </div>
 
                     <h1>Connected Accounts</h1>
@@ -72,17 +72,18 @@
                     {{-- Delete account section --}}
                     <div>
                         <h1>Delete Account</h1>
-                        <p class="gray-text fw-light">Deleting your account will permanently erase all the data that you’ve
+                        <p class="gray-text fw-light">Deleting your account will permanently erase all the data that
+                            you’ve
                             accumulated. Please be aware that this action will permanently delete your TACTICS Connect
                             account.</p>
-    
-                        <button class="w-25 ms-1 row border-0 rounded p-3 bg-danger text-white">
-                            Delete Account 
-                        </button>
+
+                        <form action="{{ route('account.delete') }}" method="POST"
+                            onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger p-2 w-25">Delete Account</button>
+                        </form>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-profile-list">
-                    aas1123ss
                 </div>
             </div>
         </div>
@@ -97,14 +98,15 @@
         overflow: hidden;
     }
 
+
     .setting-header {
         margin-top: 90px;
         margin-left: 180px;
         margin-right: 300px;
     }
 
-    .list-group-item .active {
-        background-color: none;
+    .list-group a {
+        border: none;
     }
 
     .verified {

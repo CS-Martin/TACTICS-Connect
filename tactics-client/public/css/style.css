@@ -67,6 +67,7 @@
     height: 760px;
     overflow: auto;
 }
+
 .post-section-header-links {
     width: 60%;
     height: 760px;
@@ -122,4 +123,14 @@
     width: inherit;
     height: inherit;
     object-fit: cover;
+}
+
+.profile-picture-comment {
+    width: auto;
+    height: 3rem;
+}
+
+.profile-picture-nav {
+    width: auto;
+    height: 2rem;
 }

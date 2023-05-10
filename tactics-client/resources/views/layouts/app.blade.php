@@ -218,8 +218,8 @@
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     {{-- Name input field --}}
-                                                                    <div class="input-hero register-input-hero">
-                                                                        <div class="form-floating">
+                                                                    <div class="input-hero register-input-hero d-flex gap-2">
+                                                                        <div class="form-floating w-50">
                                                                             <input id="name" type="text"
                                                                                 placeholder="Name"
                                                                                 class="form-control register-form-control @error('name') is-invalid @enderror"
@@ -227,14 +227,29 @@
                                                                                 value="{{ old('name') }}" required
                                                                                 autocomplete="name" autofocus>
                                                                             <label for="name">Name</label>
-
                                                                         </div>
-
                                                                         @error('name')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
                                                                             </span>
                                                                         @enderror
+
+                                                                        {{-- Surname input field --}}
+                                                                        <div class="form-floating w-50">
+                                                                            <input id="surname" type="text"
+                                                                                placeholder="Surname"
+                                                                                class="form-control register-form-control @error('surname') is-invalid @enderror"
+                                                                                name="surname"
+                                                                                value="{{ old('surname') }}" required
+                                                                                autocomplete="surname">
+                                                                            <label for="surname">Surname</label>
+                                                                        </div>
+                                                                        @error('surname')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+
                                                                     </div>
                                                                 </div>
 
@@ -343,10 +358,19 @@
                                         class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
                                         <span class="visually-hidden">New alerts</span>
                                     </span>
-                                    {{ Auth::user()->name }}
+                                    @if (auth()->user()->profile_picture)
+                                        <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
+                                            class="profile-picture-nav rounded-circle">
+                                    @else
+                                        <img src="{{ asset('img/default-user-picture.jpg') }}"
+                                            class="profile-picture-nav rounded-circle">
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end bg-dark" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item gray-text" href="{{ route('profile') }}">
+                                        Hi, {{ auth()->user()->name }}!
+                                    </a>
                                     <a class="dropdown-item gray-text" href="{{ route('profile') }}">
                                         <i class="fa-solid fa-user"></i>
                                         Profile
@@ -426,6 +450,11 @@
 <style scoped>
     body {
         font-family: 'Lexend', sans-serif;
+    }
+
+    .profile-picture {
+        height: 12rem;
+        width: auto;
     }
 
     .modal-color {

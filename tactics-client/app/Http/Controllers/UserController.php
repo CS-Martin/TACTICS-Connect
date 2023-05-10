@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -21,5 +24,21 @@ class UserController extends Controller
         }
 
         return redirect()->back()->with('success', 'Profile picture uploaded successfully.');
+    }
+
+    public function destroy()
+    {
+        $user = Auth::user();
+
+        // Delete the user's account and associated data
+        // For example:
+        $user->Post()->delete();
+        User::destroy($user->id);
+
+        // Logout the user after account deletion
+        Auth::logout();
+
+        // Redirect the user to the desired page (e.g., homepage) after deletion
+        return redirect('/')->with('success', 'Your account has been deleted successfully.');
     }
 }
