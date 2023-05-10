@@ -3,7 +3,7 @@
         <!-- Add position-relative class here -->
         <!-- profile -->
         <div class="d-flex">
-            <div class="card-profile ms-3">
+            <div class="card-profile mt-2 ms-3">
                 @if ($post->user && optional($post->user)->profile_picture)
                     <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
                         class="profile-picture rounded-circle">
@@ -196,7 +196,6 @@
     }
 
     .card-profile img {
-        margin-top: 25%;
         width: inherit;
     }
 

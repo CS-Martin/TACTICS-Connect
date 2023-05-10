@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,6 +27,7 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Profile picture uploaded successfully.');
     }
 
+    // Delete an account 
     public function destroy()
     {
         $user = Auth::user();
@@ -40,5 +42,27 @@ class UserController extends Controller
 
         // Redirect the user to the desired page (e.g., homepage) after deletion
         return redirect('/')->with('success', 'Your account has been deleted successfully.');
+    }
+
+    // Request new password
+    public function updatePassword(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        // Check if the current password matches the user's password
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'Incorrect current password']);
+        }
+
+        // Update the user's password
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Password updated successfully');
     }
 }

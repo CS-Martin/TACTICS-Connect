@@ -126,8 +126,8 @@
 }
 
 .profile-picture-comment {
-    width: auto;
-    height: 3rem;
+    width: 2rem !important;
+    margin: 0;
 }
 
 .profile-picture-nav {

@@ -11,11 +11,10 @@
                 @endif
 
             </div>
-            <div class="comments rounded px-4 d-flex justify-content-between align-items-center w-100">
+            <div class="comments rounded-pill px-4 d-flex justify-content-between align-items-center w-100">
                 <div>
                     {{-- Comment body goes here --}}
                     <p class="mb-0">{{ $comment->body }}</p>
-                    <p class="text-muted">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</p>
                 </div>
                 <div>
                     {{-- Edit and delete buttons --}}
@@ -27,9 +26,11 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex text-start px-5 ms-5">
+            <small class="text-muted">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
+        </div>
     @endforeach
 </div>
-
 
 {{-- commenting input here --}}
 <div class="card card-body mb-3">
@@ -96,17 +97,12 @@
         width: 6rem;
     }
 
-    .profile-picture-comment-bf {
-        width: 5px;
-        height: auto;
-    }
-
     .comments-section {
         margin-left: 70px;
     }
 
     .comments {
-        background: rgba(0, 0, 0, 0.151);
+        background: rgba(0, 0, 0, 0.062);
     }
 
     .comments p {
