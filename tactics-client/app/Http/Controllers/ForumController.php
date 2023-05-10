@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmark;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Forum;
@@ -18,10 +19,10 @@ class ForumController extends Controller
     public function index()
     {
         $users = User::all();
-
         $posts = Post::with('comments')->orderBy('created_at', 'desc')->get();
+        $bookmarks = Bookmark::query()->orderBy('created_at', 'desc')->get();
 
-        return view('forum', ['posts' => $posts, 'users' => $users]);
+        return view('forum', ['posts' => $posts, 'users' => $users])->with('bookmarks', $bookmarks);
     }
 
     /**

@@ -14,6 +14,15 @@ class BookmarkController extends Controller
         $user = Auth::user();
         $post_id = $request->input('post_id');
 
+        // Check if bookmark already exists for this post and user combination
+        $bookmarkExists = Bookmark::where('user_id', $user->id)
+            ->where('post_id', $post_id)
+            ->exists();
+
+        if ($bookmarkExists) {
+            return redirect()->back()->with('error', 'Bookmark already exists.');
+        }
+
         $bookmark = new Bookmark();
         $bookmark->user_id = $user->id;
         $bookmark->post_id = $post_id;
@@ -21,5 +30,6 @@ class BookmarkController extends Controller
 
         return response()->json(['success' => true]);
     }
+
 
 }
