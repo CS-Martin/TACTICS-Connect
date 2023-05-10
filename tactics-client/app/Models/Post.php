@@ -27,4 +27,10 @@ class Post extends Model
     {
         return $this->belongsToMany(Image::class, 'post_images');
     }
+
+    // Post model
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
 }

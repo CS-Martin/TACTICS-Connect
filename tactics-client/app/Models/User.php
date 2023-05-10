@@ -45,6 +45,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // User model
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
     public function Post()
     {
         return $this->hasMany(Post::class);

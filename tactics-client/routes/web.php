@@ -9,6 +9,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\BookmarkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +68,11 @@ Route::get('/forum', [ForumController::class, 'index'])->name('forum');
 
 Route::match(['GET', 'POST'], '/posts', [PostController::class, 'store'])->name('posts.store');
 Route::put('/like', [PostController::class, 'like'])->name('posts.like');
+Route::put('/posts/{postId}/unlike', [PostController::class, 'unlike'])->name('posts.unlike');
 Route::put('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
+
+Route::post('/posts/{id}/bookmark', [BookmarkController::class, 'bookmark'])->name('posts.bookmark');
+Route::post('/bookmarks/add', [BookmarkController::class, 'add'])->name('bookmarks.add');
 
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload.profile.picture');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

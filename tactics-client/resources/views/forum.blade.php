@@ -32,29 +32,63 @@
         <div class="d-flex container-fluid p-5">
             <div class="sidebar-hero col-3 p-3">
                 <div class="mb-1">
-                    <button
-                        class="sidebar-btn p-2 text-start w-100 rounded-pill d-flex border-0  {{ request()->is('forum') ? 'sideActive' : '' }}">
+                    <button id="post-toggle" class="sidebar-btn p-2 text-start w-100 rounded-pill d-flex border-0">
                         <i class="fa-solid fa-circle fs-3 me-3"></i>
                         Discussions
                     </button>
                 </div>
 
                 <div>
-                    <button class="sidebar-btn p-2 text-start w-100 rounded-pill d-flex border-0">
+                    <button id="bookmarks-toggle" class="sidebar-btn p-2 text-start w-100 rounded-pill d-flex border-0">
                         <i class="fa-solid fa-circle fs-3 me-3"></i>
                         Bookmarks
                     </button>
                 </div>
             </div>
 
-            <div class="post-section">
+
+            <div id="posts-section" class="post-section">
                 @include('post')
             </div>
+            <div id="bookmarks-section" class="post-section" style="display: none;">
+                @include('bookmarks')
+            </div>
+
         </div>
     </div>
 </body>
 
-<script></script>
+<script>
+    const toggleButton = document.getElementById('bookmarks-toggle');
+    const bookmarksContent = document.getElementById('bookmarks-section');
+    const toggleButton_post = document.getElementById('post-toggle');
+    const postsContent = document.getElementById('posts-section');
+
+    // show bookmarks button
+    toggleButton.addEventListener('click', () => {
+        if (bookmarksContent.style.display = 'none') {
+            bookmarksContent.style.display = 'block';
+            postsContent.style.display = 'none';
+            toggleButton.classList.add('sideActive');
+            toggleButton_post.classList.remove('sideActive');
+        } else {
+            bookmarksContent.style.display = 'none';
+        }
+    })
+
+    // show posts button
+    toggleButton_post.addEventListener('click', () => {
+        if (postsContent.style.display = 'none') {
+            postsContent.style.display = 'block';
+            bookmarksContent.style.display = 'none';
+            toggleButton_post.classList.add('sideActive');
+            toggleButton.classList.remove('sideActive');
+        } else {
+            postsContent.style.display = 'none';
+            bookmarksContent.style.display = 'block';
+        }
+    })
+</script>
 
 <style scoped>
     .forum-container {
@@ -84,6 +118,7 @@
     .sideActive {
         background: rgba(97, 195, 200, 0.25);
         color: #4BA4A8;
+        transition: all 0.3s;
     }
 
 </style>
