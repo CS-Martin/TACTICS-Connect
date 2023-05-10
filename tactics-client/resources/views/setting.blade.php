@@ -49,29 +49,32 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-setting" role="tabpanel"
                     aria-labelledby="list-home-list">
-                    <h1>Email Address</h1>
+                    <h4>Email Address</h4>
                     <p class="gray-text fw-light">We will never share your email address or share it publicly</p>
 
                     {{-- email --}}
                     <div class="p-4 d-flex">
                         <h5 class="m-0 p-1">{{ auth()->user()->email }}</h5>
-                        <small class="verified rounded p-1 ms-2 text-white">verified</small>
+                        <small class="verified rounded p-1 px-2 ms-2 text-white fw-light">verified
+                            <i class="fa-solid fa-user-check"></i>
+                        </small>
                     </div>
 
-                    <h1>Connected Accounts</h1>
-                    <p class="gray-text fw-light">Connect your other accounts to to TACTICS-Connect</p>
+                    <div class="mt-3">
+                        <h4>Connected Accounts</h4>
+                        <p class="gray-text fw-light">Connect your other accounts to to TACTICS-Connect</p>
+                    </div>
 
                     {{-- link account buttons --}}
                     <div class="p-3">
-
                         <button class="w-25 row border-0 rounded p-3 facebook text-white">Connect to Facebook</button>
                         <button class="w-25 row border-0 rounded p-3 my-3 bg-dark text-white">Connect to Github</button>
                         <button class="w-25 row border-0 rounded p-3 linkedIn text-white">Connect to LinkedIn</button>
                     </div>
 
                     {{-- Delete account section --}}
-                    <div>
-                        <h1>Delete Account</h1>
+                    <div class="mt-3">
+                        <h4>Delete Account</h4>
                         <p class="gray-text fw-light">Deleting your account will permanently erase all the data that
                             you’ve
                             accumulated. Please be aware that this action will permanently delete your TACTICS Connect
@@ -84,6 +87,43 @@
                             <button type="submit" class="btn btn-danger p-2 w-25">Delete Account</button>
                         </form>
                     </div>
+                </div>
+
+                {{-- Change password --}}
+                <div class="tab-pane fade show" id="list-password" role="tabpanel" aria-labelledby="list-home-list">
+                    <h4>Change your Password</h4>
+                    <p class="gray-text fw-light">Enter your current TACTICS-connect account password followed by the
+                        new one to request change password.</p>
+                    <form action="{{ route('account.updatePassword') }}" method="POST">
+                        @csrf
+
+                        <div class="form-group w-25">
+                            <label for="current_password" class="form-label gray-text fw-light">Current Password</label>
+                            <input class="form-control fw-light" id="current_password" type="password" name="current_password"
+                                placeholder="Enter your current password here..." required>
+                            @error('current_password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="new_password" class="gray-text fw-light">New Password</label>
+                            <input class="form-control fw-light w-25" id="new_password" type="password" name="new_password"
+                                placeholder="Enter new password" required>
+                            @error('new_password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new_password_confirmation" class="gray-text fw-light">Confirm New Password</label>
+                            <input class="form-control w-25 fw-light" id="new_password_confirmation" type="password"
+                                name="new_password_confirmation" placeholder="Re-enter new password" required>
+                        </div>
+
+                        {{-- new password --}}
+
+                        <button type="submit" class="mt-3 btn bg-success w-25 text-white p-2">Update Password</button>
+                    </form>
                 </div>
             </div>
         </div>
