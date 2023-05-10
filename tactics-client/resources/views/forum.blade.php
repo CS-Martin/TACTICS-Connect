@@ -85,4 +85,5 @@
         background: rgba(97, 195, 200, 0.25);
         color: #4BA4A8;
     }
+
 </style>

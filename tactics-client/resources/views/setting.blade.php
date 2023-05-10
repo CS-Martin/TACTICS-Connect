@@ -9,8 +9,8 @@
             <div class="mb-1">
                 <div class="row">
                     <div class="col-4 w-100">
-                        <h5>Account</h5>
                         <div class="list-group  ms-3" id="list-tab" role="tablist">
+                            <h5>Account</h5>
                             <div>
                                 <a class="list-group-item list-group-item-action backgroundColor active"
                                     id="list-home-list" data-bs-toggle="list" href="#list-setting" role="tab"
@@ -55,7 +55,7 @@
                     {{-- email --}}
                     <div class="p-4 d-flex">
                         <h5 class="m-0 p-1">meatole.cs@gmail.com</h5>
-                        <small class="verified rounded p-1 ms-2">verified</small>
+                        <small class="verified rounded p-1 ms-2 text-white">verified</small>
                     </div>
 
                     <h1>Connected Accounts</h1>
@@ -85,9 +85,6 @@
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-profile-list">
-                    aas1123ss
-                </div>
             </div>
         </div>
     </div>
@@ -101,14 +98,15 @@
         overflow: hidden;
     }
 
+
     .setting-header {
         margin-top: 90px;
         margin-left: 180px;
         margin-right: 300px;
     }
 
-    .list-group-item .active {
-        background-color: none;
+    .list-group a {
+        border: none;
     }
 
     .verified {

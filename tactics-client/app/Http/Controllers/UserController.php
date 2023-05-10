@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,7 @@ class UserController extends Controller
 
         // Delete the user's account and associated data
         // For example:
+        $user->Post()->delete();
         User::destroy($user->id);
 
         // Logout the user after account deletion

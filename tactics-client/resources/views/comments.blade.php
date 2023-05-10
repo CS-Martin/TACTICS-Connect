@@ -44,7 +44,8 @@
         @endif
         <input type="hidden" name="post_id" value="{{ $post->id }}">
         <textarea class="text-break form-control mx-2" name="body" id="comment-body-{{ $post->id }}"></textarea>
-        <button type="submit" class="btn-color border-0 text-white rounded">Submit</button>
+        <button type="submit" class="btn-color border-0 text-white rounded submit-button"><i
+                class="fa-solid fa-paper-plane"></i></button>
     </form>
 </div>
 
@@ -91,9 +92,8 @@
         max-height: 500px;
     }
 
-    .profile-picture-comment {
-        width: auto;
-        height: 3rem;
+    .submit-button {
+        width: 6rem;
     }
 
     .profile-picture-comment-bf {

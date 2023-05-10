@@ -156,6 +156,11 @@
         width: auto;
     }
 
+    .profile-picture {
+        width: auto;
+        height: auto;
+    }
+
     .like-btn {
         color: #888888;
         background: #DFDFDF;
