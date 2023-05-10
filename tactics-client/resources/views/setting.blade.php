@@ -72,13 +72,17 @@
                     {{-- Delete account section --}}
                     <div>
                         <h1>Delete Account</h1>
-                        <p class="gray-text fw-light">Deleting your account will permanently erase all the data that you’ve
+                        <p class="gray-text fw-light">Deleting your account will permanently erase all the data that
+                            you’ve
                             accumulated. Please be aware that this action will permanently delete your TACTICS Connect
                             account.</p>
-    
-                        <button class="w-25 ms-1 row border-0 rounded p-3 bg-danger text-white">
-                            Delete Account 
-                        </button>
+
+                        <form action="{{ route('account.delete') }}" method="POST"
+                            onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger p-2 w-25">Delete Account</button>
+                        </form>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-profile-list">

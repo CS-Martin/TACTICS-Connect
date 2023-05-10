@@ -76,3 +76,4 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
  * @return profile page
  */
 Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+Route::delete('/account/delete', [UserController::class, 'destroy'])->name('account.delete');

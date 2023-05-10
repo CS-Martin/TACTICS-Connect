@@ -257,6 +257,8 @@
                                         @endif
                                         <p class="">{{ $post->likes }}</p>
                                     </div>
+                                    
+                                    {{-- Comment button --}}
                                     <div class="d-flex">
                                         <div class="me-3">
                                             <button id="comment-button-{{ $post->id }}"
