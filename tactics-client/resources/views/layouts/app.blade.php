@@ -57,9 +57,11 @@
                         <li class="nav-item "><a href="#about_section"
                                 class="nav-link text-white {{ request()->is('/about') ? 'active' : '' }}">About Us</a>
                         </li>
+                        @if (Auth::check())
                         <li class="nav-item "><a href="/forum"
                                 class="nav-link text-white {{ request()->is('forum') ? 'active' : '' }}">Forum</a>
                         </li>
+                        @endif
 
                         <!-- Authentication Links -->
                         @guest
@@ -209,6 +211,19 @@
             }
         }
     });
+
+    if (window.location.href.indexOf("forum") > -1 || window.location.href.indexOf("profile") > -1) {
+        var isForumPage = $('body').hasClass('forum-container');
+
+        $('.navbar').addClass('navbar-scroll');
+        $('.logo').css('opacity', '1');
+        $('.navbar').removeClass('navbar-transparent');
+        if (!isForumPage) {
+            $('.logo').css('opacity', '1');
+        }
+    }
+
+    
 </script>
 <style scoped>
     body {

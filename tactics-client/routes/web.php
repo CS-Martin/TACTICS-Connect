@@ -87,3 +87,9 @@ Route::delete('/account/delete', [UserController::class, 'destroy'])->name('acco
 
 // Change password
 Route::post('/account/update-password', [UserController::class, 'updatePassword'])->name('account.updatePassword');
+
+// // middleware
+// Route::middleware(['auth.check'])->group(function () {
+//     Route::get('/setting', [SettingController::class, 'index']);
+//     Route::get('/forum', [ForumController::class, 'index']);
+// });
