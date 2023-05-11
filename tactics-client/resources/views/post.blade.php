@@ -16,7 +16,7 @@
             <div class="ms-5 w-100">
                 <div>
                     <!-- Default dropend button -->
-                    <div class="dropdown menu-btn position-absolute top-0 end-0 p-4 me-3">
+                    <div class="dropdown menu-btn position-absolute top-0 end-0 p-3 me-3">
                         {{-- Hide if not the post owner --}}
                         {{-- Do not allow other users to delete others post --}}
                         @if ($post->user_id === auth()->user()->id)

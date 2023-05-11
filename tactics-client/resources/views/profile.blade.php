@@ -153,7 +153,7 @@
                                 </div>
                             @else
                                 @foreach ($posts->where('user_id', auth()->user()->id) as $post)
-                                    <div class="post my-3 p-3 position-relative">
+                                    <div class="post p-3 position-relative">
                                         <div class="d-flex">
                                             <div class="card-profile ms-3">
                                                 @if ($post->user && optional($post->user)->profile_picture)
@@ -261,8 +261,7 @@
                                                     <div class="d-flex justify-content-center align-items-center">
                                                         @if (!session()->has('liked_post_' . $post->id))
                                                             <form action="{{ route('posts.like', $post->id) }}"
-                                                                class="m-0"
-                                                                method="POST">
+                                                                class="m-0" method="POST">
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <button type="submit"
@@ -272,8 +271,7 @@
                                                             </form>
                                                         @else
                                                             <form action="{{ route('posts.unlike', $post->id) }}"
-                                                                class="m-0" 
-                                                                method="POST">
+                                                                class="m-0" method="POST">
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <button type="submit"
@@ -325,13 +323,23 @@
                                 @endforeach
                             @endif
                         </div>
+
+                        {{-- Comments tab --}}
                         <div class="tab-pane fade" id="list-comments" role="tabpanel"
-                            aria-labelledby="list-comments-list">...</div>
+                            aria-labelledby="list-comments-list">
+                            <div class="post rounded p-3 text-center gray-text">
+                                <h6 class="fw-normal m-0">You haven't commented on any posts yet.</h6>
+                            </div>
+                        </div>
                         <div class="tab-pane fade" id="list-likes" role="tabpanel"
-                            aria-labelledby="list-likes-list">...</div>
+                            aria-labelledby="list-likes-list">
+                            <div class="post rounded p-3 text-center gray-text">
+                                <h6 class="fw-normal m-0">You haven't liked any posts yet.</h6>
+                            </div>
+                        </div>
 
                         {{-- Bookmark tab --}}
-                        <div class="tab-pane fade my-3" id="list-bookmarks" role="tabpanel"
+                        <div class="tab-pane fade" id="list-bookmarks" role="tabpanel"
                             aria-labelledby="list-bookmarks-list">
                             @if (count($bookmarks->where('user_id', auth()->user()->id)) == 0)
                                 <div class="post rounded p-3 text-center gray-text">
