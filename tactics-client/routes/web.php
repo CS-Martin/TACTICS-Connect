@@ -71,8 +71,10 @@ Route::put('/like', [PostController::class, 'like'])->name('posts.like');
 Route::put('/posts/{postId}/unlike', [PostController::class, 'unlike'])->name('posts.unlike');
 Route::put('/posts/{id}/like', [PostController::class, 'like'])->name('posts.like');
 
-Route::post('/posts/{id}/bookmark', [BookmarkController::class, 'bookmark'])->name('posts.bookmark');
+// bookmarks
+//Route::post('/posts/{id}/bookmark', [BookmarkController::class, 'bookmark'])->name('posts.bookmark');
 Route::post('/bookmarks/add', [BookmarkController::class, 'add'])->name('bookmarks.add');
+Route::post('/bookmarks/remove', [BookmarkController::class, 'remove'])->name('bookmarks.remove');
 
 Route::post('/upload-profile-picture', [UserController::class, 'uploadProfilePicture'])->name('upload.profile.picture');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

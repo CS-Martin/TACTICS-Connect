@@ -32,7 +32,7 @@
         <div class="d-flex container-fluid p-5">
             <div class="sidebar-hero col-3 p-3">
                 <div class="mb-1">
-                    <button id="post-toggle" class="sidebar-btn p-2 text-start w-100 rounded-pill d-flex border-0">
+                    <button id="post-toggle" class="sidebar-btn p-2 text-start w-100 rounded-pill d-flex border-0  {{request()->is('forum') ? 'sideActive' : ''}}">
                         <i class="fa-solid fa-circle fs-3 me-3"></i>
                         Discussions
                     </button>
