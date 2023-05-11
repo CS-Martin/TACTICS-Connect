@@ -58,9 +58,9 @@
                 @endif
             </div>
             <div id="bookmarks-section" class="post-section my-0" style="display: none;">
-                @if (count($bookmarks) == 0)
+                @if (count($bookmarks->where('user_id', auth()->user()->id)) == 0)
                     <div class="post rounded p-3 text-center gray-text">
-                        <h6 class="fw-normal m-0">There are no bookmarks yet.</h6>
+                        <h6 class="fw-normal m-0">You haven't bookmarked any posts yet.</h6>
                     </div>
                 @else
                     @include('bookmarks')

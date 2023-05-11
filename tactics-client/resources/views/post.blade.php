@@ -108,7 +108,7 @@
                                 </button>
                             </form>
                         @endif
-                        <p class="m-0">{{ $post->likes }}</p>
+                        <p class="m-0 fw-normal">{{ $post->likes }}</p>
                     </div>
                     <div class="d-flex">
                         <div class="me-3">
