@@ -9,7 +9,7 @@
                         @if ($post->user && optional($post->user)->profile_picture)
                             <img src="{{ asset('storage/' . $post->user->profile_picture) }}" class=" rounded-circle">
                         @else
-                            <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture rounded-circle">
+                            <img src="{{ asset('img/default-user-picture.jpg') }}" class=" rounded-circle">
                         @endif
                     </div>
 
@@ -74,7 +74,7 @@
                                 <!-- Name & time posted -->
                                 <div class="mt-1">
                                     <h6 class="username-style margin-0">{{ $post->name }} {{ $post->surname }}</h6>
-                                    <small class="gray-text">
+                                    <small class="gray-text fw-light">
                                         <i class="fa-solid fa-clock me-1"></i>
                                         {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
                                     </small>
@@ -87,7 +87,7 @@
                                 {{ $post->title }}
                             </h2>
                             <div class="post-body">
-                                <p>{{ $post->body }}</p>
+                                <p class="fw-normal">{{ $post->body }}</p>
                             </div>
                             <div class="image-grid">
                                 @foreach ($post->images as $image)
@@ -120,7 +120,7 @@
                                     </form>
                                 @endif
 
-                                <p class="m-0">{{ $post->likes }}</p>
+                                <p class="m-0 fw-normal">{{ $post->likes }}</p>
                             </div>
                             <div class="d-flex">
                                 <div class="me-3">
