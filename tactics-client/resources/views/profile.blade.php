@@ -308,7 +308,7 @@
                             aria-labelledby="list-comments-list">...</div>
                         <div class="tab-pane fade" id="list-likes" role="tabpanel"
                             aria-labelledby="list-likes-list">...</div>
-                        <div class="tab-pane fade" id="list-bookmarks" role="tabpanel"
+                        <div class="tab-pane fade my-3" id="list-bookmarks" role="tabpanel"
                             aria-labelledby="list-bookmarks-list">
                             @include('bookmarks')
                         </div>
@@ -513,5 +513,9 @@
         color: #4BA4A8;
     }
 
-    .list-group-item {}
+    .list-group-item:hover {
+        background-color: #4BA4A8 !important;
+        color: white !important;
+        border-bottom:#4BA4A8 !important;
+    }
 </style>

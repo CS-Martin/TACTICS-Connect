@@ -136,3 +136,10 @@
     width: auto;
     height: 2rem;
 }
+
+.post {
+    background: rgba(0, 0, 0, 0.096);
+    border-radius: 23px;
+    height: auto;
+    width: auto;
+}
