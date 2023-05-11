@@ -149,7 +149,7 @@
                             aria-labelledby="list-home-list">
                             @if (count($posts->where('user_id', auth()->user()->id)) == 0)
                                 <div class="post rounded p-3 text-center gray-text">
-                                    <h6 class="fw-normal m-0">There are no posts yet.</h6>
+                                    <h6 class="fw-normal m-0">You don't have any posts yet.</h6>
                                 </div>
                             @else
                                 @foreach ($posts->where('user_id', auth()->user()->id) as $post)
@@ -259,7 +259,7 @@
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex justify-content-center align-items-center">
                                                         @if (!isset($_COOKIE['liked_post_' . $post->id]))
-                                                            <form action="{{ route('posts.like', $post->id) }}"
+                                                            <form action="{{ route('posts.like', $post->id) }}" class="mb-0"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('PUT')
@@ -269,7 +269,7 @@
                                                                 </button>
                                                             </form>
                                                         @endif
-                                                        <p class="">{{ $post->likes }}</p>
+                                                        <p class="fw-normal">{{ $post->likes }}</p>
                                                     </div>
 
                                                     {{-- Comment button --}}
@@ -320,7 +320,7 @@
                             aria-labelledby="list-bookmarks-list">
                             @if (count($bookmarks->where('user_id', auth()->user()->id)) == 0)
                                 <div class="post rounded p-3 text-center gray-text">
-                                    <h6 class="fw-normal m-0">You are no bookmarks yet.</h6>
+                                    <h6 class="fw-normal m-0">You haven't bookmarked any posts yet.</h6>
                                 </div>
                             @else
                                 @include('bookmarks')
