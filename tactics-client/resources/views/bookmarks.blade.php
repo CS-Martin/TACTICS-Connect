@@ -7,7 +7,7 @@
                 <div class="card-profile mt-2 ms-3">
                     @if ($post->user && optional($post->user)->profile_picture)
                         <img src="{{ asset('storage/' . $post->user->profile_picture) }}"
-                            class="profile-picture rounded-circle">
+                            class=" rounded-circle">
                     @else
                         <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture rounded-circle">
                     @endif
@@ -205,3 +205,8 @@
         });
     }
 </script>
+
+<style scoped>
+
+    
+</style>

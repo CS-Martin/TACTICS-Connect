@@ -35,7 +35,7 @@
                             <form id="upload-form" action="{{ route('upload.profile.picture') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <button class="border-0" onclick="openFileInput(event)">
+                                <button class="border-0 bg-transparent" onclick="openFileInput(event)">
                                     <div class="profile-picture-container">
                                         <div class="profile-picture-overlay rounded-circle">
                                             <i class="fas fa-edit"></i>
@@ -52,7 +52,7 @@
                             <form id="upload-form" action="{{ route('upload.profile.picture') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <button class="border-0" onclick="openFileInput(event)">
+                                <button class="border-0 bg-transparent" onclick="openFileInput(event)">
                                     <div class="profile-picture-container">
                                         <div class="profile-picture-overlay rounded-circle">
                                             <i class="fas fa-edit"></i>
@@ -99,7 +99,7 @@
 
                 <div class="my-3 position-relative border-bottom">
                     <h5 class="m-0">About me</h5>
-                    <ul class="list-style">
+                    <ul class="list-style mt-2">
                         <div>
                             <li class="text-decoration-none">Education</li>
                             <h6>---</h6>
@@ -128,7 +128,7 @@
         <div class="post-section px-3">
             <div class="backgroundColor">
                 <div class="row">
-                    <div class="list-group d-flex flex-row p-3" id="list-tab" role="tablist">
+                    <div class="list-group d-flex flex-row p-3 bg-white" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-action active text-center" id="list-home-list"
                             data-bs-toggle="list" href="#list-post" role="tab"
                             aria-controls="list-home">Post</a>
@@ -143,7 +143,8 @@
                             aria-controls="list-settings">Bookmarks</a>
                     </div>
 
-                    <div class="tab-content" id="nav-tabContent">
+                    {{-- ****************************POST********************************* --}}
+                    <div class="tab-content bg-white" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="list-post" role="tabpanel"
                             aria-labelledby="list-home-list">
                             @foreach ($posts->where('user_id', auth()->user()->id) as $post)
@@ -380,12 +381,8 @@
 </script>
 
 <style scoped>
-    .tactics-logo {
-        opacity: 1 !important;
-    }
-
     .profile-container {
-        background-color: #f4f4f4;
+        background-color: #ffffff;
         margin: 0;
         overflow: auto;
     }
