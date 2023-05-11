@@ -4,16 +4,15 @@
             <img src="{{ asset('img/tactics-logo-trans.png') }}" class="abt-us-logo" alt="">
             <div class="text-white txt-margin">
                 <h2>About Us</h2> <br>
-                <p class="lh-lg fw-lighter fs-5">Lorem ipsum dolor sit amet. Aut illo inventore aut maiores dolores eos
-                    necessitatibus tempora aut blanditiis maiores sed voluptates iusto. Nam repellendus dicta ea aliquid
-                    suscipit id facere assumenda. Est nemo unde aut ipsam distinctio rem recusandae error ea iure
-                    eligendi ea laboriosam dolore? Ab quia nostrum ea illo beatae quo molestiae molestiae in voluptatem
-                    odio.
-                    Ad officiis debitis ea minus dicta ut voluptatibus voluptatum. In laborum quae qui officiis illum et
-                    sapiente enim non dicta similique. Et tempore aliquid a rerum totam et tenetur totam est vero unde
-                    et laboriosam laborum. Est voluptatibus repellat hic sint exercitationem ad dolor pariatur in
-                    quisquam pariatur cum error omnis et internos consequatur qui facilis ipsam. Ut fuga sapiente 33
-                    consequatur modi id voluptate dolorum. Est suscipit corrupti rem quis sint et molestiae voluptas.
+                <p class="lh-lg fw-lighter fs-5">Welcome to Tactics Connect! We are a community-driven website dedicated to providing the latest news and updates on Computer Science and the Tactics group of Ateneo de Naga University.
+
+                    Our platform features a forum page where members can share and discuss valuable information about the field of Computer Science. We believe that knowledge-sharing is crucial in advancing the skills and expertise of our members, as well as promoting collaboration and camaraderie within our community.
+                    
+                    At Tactics Connect, we prioritize the needs of our members, especially the Tactics group. We strive to deliver the most recent announcements, news, and information that could help them stay informed and up-to-date with the latest trends and developments in the industry.
+                    
+                    Our mission is to create a space where students and professionals in Computer Science can come together, share their knowledge and experiences, and learn from each other. We hope to empower our members to achieve their full potential in their chosen field and contribute to the growth and development of the industry.
+                    
+                    Thank you for being a part of Tactics Connect!.
                 </p>
             </div>
         </div>

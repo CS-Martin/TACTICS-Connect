@@ -75,11 +75,12 @@
                     body: body
                 },
                 success: function(response) {
+                    location.reload();
                     return response;
                 },
                 error: function(response) {
                     return response;
-                }
+                },
             });
         });
     });

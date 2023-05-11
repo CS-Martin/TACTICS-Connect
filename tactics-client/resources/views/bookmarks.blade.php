@@ -133,7 +133,7 @@
                                     </button>
                                 </div>
                                 <div class="">                            
-                                    @if ($bookmarks->where('post_id', $post->id)->count() > 0)
+                                    @if ($bookmarks->where('post_id', $post->id)->count() > 0 && $bookmark->user_id === Auth::user()->id)
                                         <button class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2"
                                             onclick="confirmRemove({{ $post->id }})"><i
                                                 id="bookmark-icon-{{ $post->id }}"

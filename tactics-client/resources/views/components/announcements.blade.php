@@ -11,22 +11,22 @@
                 <h1 class="announcement-header text-center mt-3">ANNOUNCEMENTS</h1>
                 <div class="announcements d-flex p-5 fs-4 mx-2">
                     <div class="w-50">
-                        
+
                     </div>
 
                     <div class="w-50 fs-4 mx-2">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto non aspernatur
-                            repellendus nesciunt dicta? Dignissimos ducimus, delectus dolores nisi excepturi eaque
-                            soluta inventore ea autem. Nulla assumenda quia neque exercitationem! <br><br> Lorem ipsum dolor
-                            sit amet, consectetur adipisicing elit. Totam dolor vel adipisci quod harum maxime,
-                            similique amet. Perferendis iure libero repellendus sed inventore eligendi, voluptates,
-                            harum porro tenetur possimus suscipit. <br><br> Lorem ipsum dolor
-                            sit amet, consectetur adipisicing elit. Totam dolor vel adipisci quod harum maxime,
-                            similique amet. Perferendis iure libero repellendus sed inventore eligendi, voluptates,
-                            harum porro tenetur possimus suscipit. Lorem ipsum dolor
-                            sit amet, consectetur adipisicing elit. Totam dolor vel adipisci quod harum maxime,
-                            similique amet. Perferendis iure libero repellendus sed inventore eligendi, voluptates,
-                            harum porro tenetur possimus suscipit.</p>
+                        <h6>YEAR 420, January 69</h6>
+                        <p>"Join us for our annual Hackathon on October 30th! This year's theme is "Innovative Solutions
+                            for a Better World". Whether you're a seasoned programmer or just starting out, this event
+                            is open to all Tactics members and Ateneo de Naga University students who are passionate
+                            about creating innovative solutions to real-world problems. Don't miss this chance to
+                            network with like-minded individuals and showcase your skills. Register now on the Tactics
+                            Connect website!"</p>
+                            <br>
+                        <h6>YEAR 420, January 69</h6>
+                        <p>"Get ready for the annual <strong>ACP!</strong> A competitive programming competition to bolster your
+                            programming and problem solving skills. Join us at the Marco blg, 420th floor. Get ready and
+                            Enjoy the show!"</p>
                     </div>
                 </div>
             </div>
