@@ -139,8 +139,14 @@
                             </button>
                         </div>
                         <div class="">
-                            <button class="btn" onclick="addBookmark({{ $post->id }})"><i
-                                    id="bookmark-icon-{{ $post->id }}" class="fa-solid fa-bookmark"></i></button>
+                            @if ($bookmarks->where('post_id', $post->id)->count() > 0)
+                                <button class="btn" onclick="confirmRemove({{ $post->id }})"><i
+                                        id="bookmark-icon-{{ $post->id }}"
+                                        class="fa-solid fa-bookmark"></i></button>
+                            @else
+                                <button class="btn" onclick="addBookmark({{ $post->id }})"><i
+                                        class="fa-regular fa-bookmark"></i></button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -153,6 +159,11 @@
 @endforeach
 
 <script>
+    function confirmRemove(post_id) {
+        if (window.confirm("Are you sure you want to remove bookmark to post?"))
+            removeBookmark(post_id);
+    }
+
     function addBookmark(post_id) {
         $.ajax({
             type: 'POST',
@@ -162,15 +173,37 @@
                 'post_id': post_id
             },
             success: function(response) {
+                console.log(response.bookmarked)
                 if (response.bookmarked) {
-                    // Post was already bookmarked, so remove the bookmark and change the icon back to its original icon
-                    $('#bookmark-icon-' + post_id).removeClass('fa-bookmark').addClass('fa-bookmark-o');
-                    alert('Bookmark removed successfully!');
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark').addClass('fa-bookmark-o');
+                    //alert('Bookmark Added successfully!');
                 } else {
-                    // Post was not bookmarked, so add the bookmark and change the icon to the bookmarked icon
-                    $('#bookmark-icon-' + post_id).removeClass('fa-bookmark-o').addClass('fa-bookmark');
-                    alert('Bookmark added successfully!');
+                   //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark-o').addClass('fa-bookmark');
+                    //alert('Bookmark ,removed successfully!');
                 }
+                location.reload();
+            }
+        });
+    }
+
+    function removeBookmark(post_id) {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('bookmarks.remove') }}',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'post_id': post_id
+            },
+            success: function(response) {
+                console.log(response.bookmarked)
+                if (response.bookmarked) {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark').addClass('fa-bookmark-o');
+                    alert('Bookmark Removed successfully!');
+                } else {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark-o').addClass('fa-bookmark');
+                    //alert('Bookmark ,removed successfully!');
+                }
+                location.reload();
             }
         });
     }

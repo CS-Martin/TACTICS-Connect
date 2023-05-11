@@ -115,10 +115,14 @@
                                 </button>
                             </div>
                             <div class="">
-                                <button type="submit"
-                                    class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                </button>
+                                @if ($bookmarks->where('post_id', $post->id)->count() > 0)
+                                    <button class="btn" onclick="confirmRemove({{ $post->id }})"><i
+                                            id="bookmark-icon-{{ $post->id }}"
+                                            class="fa-solid fa-bookmark"></i></button>
+                                @else
+                                    <button class="btn" onclick="addBookmark({{ $post->id }})"><i
+                                            class="fa-thin fa-bookmark"></i></button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -130,3 +134,54 @@
         </div>
     @endforeach
 @endforeach
+
+<script>
+    function confirmRemove(post_id) {
+        if (window.confirm("Are you sure you want to remove bookmark to post?"))
+            removeBookmark(post_id);
+    }
+
+    function addBookmark(post_id) {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('bookmarks.add') }}',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'post_id': post_id
+            },
+            success: function(response) {
+                console.log(response.bookmarked)
+                if (response.bookmarked) {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark').addClass('fa-bookmark-o');
+                    //alert('Bookmark Added successfully!');
+                } else {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark-o').addClass('fa-bookmark');
+                    //alert('Bookmark ,removed successfully!');
+                }
+                location.reload();
+            }
+        });
+    }
+
+    function removeBookmark(post_id) {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('bookmarks.remove') }}',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'post_id': post_id
+            },
+            success: function(response) {
+                console.log(response.bookmarked)
+                if (response.bookmarked) {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark').addClass('fa-bookmark-o');
+                    alert('Bookmark Removed successfully!');
+                } else {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark-o').addClass('fa-bookmark');
+                    //alert('Bookmark ,removed successfully!');
+                }
+                location.reload();
+            }
+        });
+    }
+</script>
