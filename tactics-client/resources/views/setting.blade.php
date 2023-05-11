@@ -12,30 +12,30 @@
                         <div class="list-group  ms-3" id="list-tab" role="tablist">
                             <h5>Account</h5>
                             <div>
-                                <a class="list-group-item list-group-item-action backgroundColor active"
-                                    id="list-home-list" data-bs-toggle="list" href="#list-setting" role="tab"
+                                <a class="list-group-item list-group-item-action  active" id="list-home-list"
+                                    data-bs-toggle="list" href="#list-setting" role="tab"
                                     aria-controls="list-home">Settings</a>
                             </div>
                             <div>
-                                <a class="list-group-item list-group-item-action backgroundColor" id="list-profile-list"
+                                <a class="list-group-item list-group-item-action" id="list-profile-list"
                                     data-bs-toggle="list" href="#list-password" role="tab"
                                     aria-controls="list-profile">Password</a>
                             </div>
 
                             <h5 class="mt-3">Preferences</h5>
                             <div>
-                                <a class="list-group-item list-group-item-action backgroundColor" id="list-home-list"
+                                <a class="list-group-item list-group-item-action" id="list-home-list"
                                     data-bs-toggle="list" href="#list-home" role="tab"
                                     aria-controls="list-home">Emails</a>
                             </div>
                             <div>
-                                <a class="list-group-item list-group-item-action backgroundColor" id="list-profile-list"
-                                    data-bs-toggle="list" href="#list-profile" role="tab"
+                                <a class="list-group-item list-group-item-action" id="list-profile-list"
+                                    data-bs-toggle="list" href="#list-language" role="tab"
                                     aria-controls="list-profile">Language</a>
                             </div>
                             <div>
-                                <a class="list-group-item list-group-item-action backgroundColor" id="list-profile-list"
-                                    data-bs-toggle="list" href="#list-profile" role="tab"
+                                <a class="list-group-item list-group-item-action" id="list-profile-list"
+                                    data-bs-toggle="list" href="#list-language" role="tab"
                                     aria-controls="list-profile">Personalization</a>
                             </div>
 
@@ -99,23 +99,24 @@
 
                         <div class="form-group w-25">
                             <label for="current_password" class="form-label gray-text fw-light">Current Password</label>
-                            <input class="form-control fw-light" id="current_password" type="password" name="current_password"
-                                placeholder="Enter your current password here..." required>
+                            <input class="form-control fw-light" id="current_password" type="password"
+                                name="current_password" placeholder="Enter your current password here..." required>
                             @error('current_password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group my-3">
                             <label for="new_password" class="gray-text fw-light">New Password</label>
-                            <input class="form-control fw-light w-25" id="new_password" type="password" name="new_password"
-                                placeholder="Enter new password" required>
+                            <input class="form-control fw-light w-25" id="new_password" type="password"
+                                name="new_password" placeholder="Enter new password" required>
                             @error('new_password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="new_password_confirmation" class="gray-text fw-light">Confirm New Password</label>
+                            <label for="new_password_confirmation" class="gray-text fw-light">Confirm New
+                                Password</label>
                             <input class="form-control w-25 fw-light" id="new_password_confirmation" type="password"
                                 name="new_password_confirmation" placeholder="Re-enter new password" required>
                         </div>
