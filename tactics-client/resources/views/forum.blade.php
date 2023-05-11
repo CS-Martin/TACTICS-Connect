@@ -32,7 +32,8 @@
         <div class="d-flex container-fluid p-5">
             <div class="sidebar-hero col-3 p-3">
                 <div class="mb-1">
-                    <button id="post-toggle" class="sidebar-btn p-2 text-start w-100 rounded-pill d-flex border-0  {{request()->is('forum') ? 'sideActive' : ''}}">
+                    <button id="post-toggle"
+                        class="sidebar-btn p-2 text-start w-100 rounded-pill d-flex border-0  {{ request()->is('forum') ? 'sideActive' : '' }}">
                         <i class="fa-solid fa-circle fs-3 me-3"></i>
                         Discussions
                     </button>
@@ -48,12 +49,23 @@
 
 
             <div id="posts-section" class="post-section">
-                @include('post')
+                @if (count($posts) == 0)
+                    <div class="post rounded p-3 text-center gray-text">
+                        <h6 class="fw-normal m-0">There are no posts yet.</h6>
+                    </div>
+                @else
+                    @include('post')
+                @endif
             </div>
-            <div id="bookmarks-section" class="post-section" style="display: none;">
-                @include('bookmarks')
+            <div id="bookmarks-section" class="post-section my-0" style="display: none;">
+                @if (count($bookmarks) == 0)
+                    <div class="post rounded p-3 text-center gray-text">
+                        <h6 class="fw-normal m-0">There are no bookmarks yet.</h6>
+                    </div>
+                @else
+                    @include('bookmarks')
+                @endif
             </div>
-
         </div>
     </div>
 </body>
@@ -92,7 +104,7 @@
 
 <style scoped>
     .forum-container {
-        background-color: #f4f4f4;
+        background-color: #ffffff;
         height: 100vh;
         margin: 0;
         overflow: hidden;
@@ -120,5 +132,4 @@
         color: #4BA4A8;
         transition: all 0.3s;
     }
-
 </style>

@@ -133,7 +133,7 @@
 
 <style scoped>
     .setting-container {
-        background-color: #f4f4f4;
+        background-color: #ffffff;
         height: 100vh;
         margin: 0;
         overflow: hidden;

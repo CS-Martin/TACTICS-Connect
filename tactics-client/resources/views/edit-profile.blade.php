@@ -5,7 +5,7 @@
             <form id="upload-form" action="{{ route('upload.profile.picture') }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
-                <button class="border-0" onclick="openFileInput(event)">
+                <button class="border-0 bg-transparent" onclick="openFileInput(event)">
                     <div class="profile-picture-container">
                         <div class="profile-picture-overlay rounded-circle">
                             <i class="fas fa-edit"></i>

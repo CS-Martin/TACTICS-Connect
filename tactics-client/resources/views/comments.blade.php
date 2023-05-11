@@ -50,7 +50,6 @@
     </form>
 </div>
 
-
 <script>
     $('#body').emojioneArea({
         pickerPosition: 'bottom'
