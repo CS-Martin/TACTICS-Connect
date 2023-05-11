@@ -99,15 +99,6 @@
 
                 <div class="d-flex justify-content-between">
                     <div class="d-flex justify-content-center align-items-center">
-                        {{-- @if (!isset($_COOKIE['liked_post_' . $post->id]))
-                            <form action="{{ route('posts.like', $post->id) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <button type="submit" class="rounded-circle border-0 fs-4 like-btn d-flex me-3 p-2">
-                                    <i class="fa-regular fa-thumbs-up"></i>
-                                </button>
-                            </form>
-                        @endif --}}
                         @if (!session()->has('liked_post_' . $post->id))
                             <form action="{{ route('posts.like', $post->id) }}" method="POST">
                                 @csrf
@@ -139,7 +130,7 @@
                             </button>
                         </div>
                         <div class="">
-                            <button class="btn" onclick="addBookmark({{ $post->id }})"><i
+                            <button class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2" onclick="addBookmark({{ $post->id }})"><i
                                     id="bookmark-icon-{{ $post->id }}" class="fa-solid fa-bookmark"></i></button>
                         </div>
                     </div>

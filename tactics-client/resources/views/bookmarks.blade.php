@@ -1,8 +1,8 @@
 @foreach ($bookmarks as $bookmark)
     @foreach ($posts->where('id', $bookmark->post_id) as $post)
-        <div class="post my-3 p-3 position-relative">
+        <div class="post p-4 mb-3 position-relative">
             <div class="d-flex">
-                <div class="card-profile ms-3">
+                <div class="card-profile mt-2 ms-3">
                     @if ($post->user && optional($post->user)->profile_picture)
                         <img src="{{ asset('storage/' . $post->user->profile_picture) }}" class=" rounded-circle">
                     @else
@@ -69,7 +69,7 @@
                         <div>
                             <!-- Name & time posted -->
                             <div class="mt-1">
-                                <h6 class="username-style margin-0">{{ $post->name }}</h6>
+                                <h6 class="username-style margin-0">{{ $post->name }} {{ $post->surname }}</h6>
                                 <small class="gray-text">
                                     <i class="fa-solid fa-clock me-1"></i>
                                     {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
@@ -98,12 +98,13 @@
                                 <form action="{{ route('posts.like', $post->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="rounded-circle border-0 fs-4 like-btn me-3 p-2">
+                                    <button type="submit"
+                                        class="rounded-circle border-0 fs-4 like-btn d-flex me-3 p-2">
                                         <i class="fa-regular fa-thumbs-up"></i>
                                     </button>
                                 </form>
                             @endif
-                            <p class="">{{ $post->likes }}</p>
+                            <p class="m-0">{{ $post->likes }}</p>
                         </div>
                         <div class="d-flex">
                             <div class="me-3">
@@ -114,6 +115,8 @@
                                     {{-- <a href="/forum/comments/{{ $post->id }}" class="p-2 border-0 rounded-pill comment-btn px-4">Comment</a> --}}
                                 </button>
                             </div>
+
+                            {{-- Bookmark --}}
                             <div class="">
                                 <button type="submit"
                                     class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2">
