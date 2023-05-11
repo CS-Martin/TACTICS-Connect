@@ -99,7 +99,7 @@
 
                 <div class="d-flex justify-content-between">
                     <div class="d-flex justify-content-center align-items-center">
-                        @if (!isset($_COOKIE['liked_post_' . $post->id]))
+                        @if (!session()->has('liked_post_' . $post->id))
                             <form action="{{ route('posts.like', $post->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -107,7 +107,16 @@
                                     <i class="fa-regular fa-thumbs-up"></i>
                                 </button>
                             </form>
+                        @else
+                            <form action="{{ route('posts.unlike', $post->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="rounded-circle border-0 fs-4 unlike-btn d-flex me-3 p-2">
+                                    <i class="fa-regular fa-thumbs-down"></i>
+                                </button>
+                            </form>
                         @endif
+
                         <p class="m-0 fw-normal">{{ $post->likes }}</p>
                     </div>
                     <div class="d-flex">
@@ -142,6 +151,56 @@
     </div>
 @endforeach
 
+<script>
+    function confirmRemove(post_id) {
+        if (window.confirm("Are you sure you want to remove bookmark to post?"))
+            removeBookmark(post_id);
+    }
+
+    function addBookmark(post_id) {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('bookmarks.add') }}',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'post_id': post_id
+            },
+            success: function(response) {
+                console.log(response.bookmarked)
+                if (response.bookmarked) {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark').addClass('fa-bookmark-o');
+                    //alert('Bookmark Added successfully!');
+                } else {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark-o').addClass('fa-bookmark');
+                    //alert('Bookmark ,removed successfully!');
+                }
+                location.reload();
+            }
+        });
+    }
+
+    function removeBookmark(post_id) {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('bookmarks.remove') }}',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'post_id': post_id
+            },
+            success: function(response) {
+                console.log(response.bookmarked)
+                if (response.bookmarked) {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark').addClass('fa-bookmark-o');
+                    alert('Bookmark Removed successfully!');
+                } else {
+                    //$('#bookmark-icon-' + post_id).removeClass('fa-bookmark-o').addClass('fa-bookmark');
+                    //alert('Bookmark ,removed successfully!');
+                }
+                location.reload();
+            }
+        });
+    }
+</script>
 
 <style scoped>
     .post-body {

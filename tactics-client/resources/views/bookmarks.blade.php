@@ -101,7 +101,7 @@
                         <div class="d-flex justify-content-between">
                             <div class="d-flex justify-content-center align-items-center">
                                 @if (!session()->has('liked_post_' . $post->id))
-                                    <form action="{{ route('posts.like', $post->id) }}" method="POST">
+                                    <form action="{{ route('posts.like', $post->id) }}" method="POST" class="m-0">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit"
@@ -110,7 +110,8 @@
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{ route('posts.unlike', $post->id) }}" method="POST">
+                                    <form action="{{ route('posts.unlike', $post->id) }}" method="POST"
+                                        class="m-0">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit"
@@ -132,7 +133,7 @@
                                         {{-- <a href="/forum/comments/{{ $post->id }}" class="p-2 border-0 rounded-pill comment-btn px-4">Comment</a> --}}
                                     </button>
                                 </div>
-                                <div class="">                            
+                                <div class="">
                                     @if ($bookmarks->where('post_id', $post->id)->count() > 0 && $bookmark->user_id === Auth::user()->id)
                                         <button class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2"
                                             onclick="confirmRemove({{ $post->id }})"><i
