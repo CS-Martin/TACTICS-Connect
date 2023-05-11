@@ -57,9 +57,11 @@
                         <li class="nav-item "><a href="#about_section"
                                 class="nav-link text-white {{ request()->is('/about') ? 'active' : '' }}">About Us</a>
                         </li>
+                        @if (Auth::check())
                         <li class="nav-item "><a href="/forum"
                                 class="nav-link text-white {{ request()->is('forum') ? 'active' : '' }}">Forum</a>
                         </li>
+                        @endif
 
                         <!-- Authentication Links -->
                         @guest
