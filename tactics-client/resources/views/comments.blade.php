@@ -1,33 +1,68 @@
 {{-- Comments contents here --}}
 <div class="comments-section mb-3">
     @foreach ($post->comments as $comment)
-        <div class="d-flex w-75">
-            <div class="card-profile ms-3">
-                @if ($comment->user && $comment->user->profile_picture)
-                    <img src="{{ asset('storage/' . $comment->user->profile_picture) }}"
-                        class="profile-picture-comment rounded-circle">
-                @else
-                    <img src="{{ asset('img/default-user-picture.jpg') }}" class="profile-picture-comment rounded-circle">
-                @endif
+        <div class="w-100 d-flex">
+            <div class="d-flex w-75 comments">
+                <div class="card-profile mt-2 ms-3">
+                    @if ($comment->user && $comment->user->profile_picture)
+                        <img src="{{ asset('storage/' . $comment->user->profile_picture) }}"
+                            class="profile-picture-comment rounded-circle">
+                    @else
+                        <img src="{{ asset('img/default-user-picture.jpg') }}"
+                            class="profile-picture-comment rounded-circle">
+                    @endif
 
-            </div>
-            <div class="comments rounded-pill ms-3 px-4 d-flex justify-content-between align-items-center w-100">
-                <div>
-                    {{-- Comment body goes here --}}
-                    <p class="mb-0 fw-normal">{{ $comment->body }}</p>
                 </div>
-                <div>
-                    {{-- Edit and delete buttons --}}
-                    <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button>DELETE</button>
-                    </form>
+                <div
+                    class="comments rounded-pill ms-3 px-4 py-2 d-flex justify-content-between align-items-center w-100">
+                    <div>
+                        {{-- Comment body goes here --}}
+                        <h6 class="username-style margin-0">{{ $post->name }} {{ $post->surname }}</h6>
+                        <p class="mb-0 fw-normal">{{ $comment->body }}</p>
+                    </div>
+                    <div class="">
+                        {{-- Edit and delete buttons --}}
+                        {{-- Hide if not the post owner --}}
+                        {{-- Do not allow other users to delete others post --}}
+                        <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            @if ($comment->user_id === auth()->user()->id)
+                                <button type="button"
+                                    class="border-0 rounded-circle p-2 bg-transparent h-auto  show"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-ellipsis fs-4 gray-text"></i>
+                                </button>
+
+                                {{-- Menu dropdown --}}
+                                <ul class="dropdown-menu bg-dark shadow-lg">
+                                    <!-- Button trigger modal -->
+                                    <button type="button"
+                                        class="text-start border-0 bg-transparent px-3 w-100 text-white py-1"
+                                        data-bs-toggle="modal" data-bs-target="#editPostModal">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        Edit
+                                    </button>
+
+                                    {{-- Delete post --}}
+                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="text-start border-0 bg-transparent px-3 text-danger w-100 py-1">
+                                            <i class="fa-solid fa-trash"></i>
+                                            Delete
+                                        </button>
+                                    </form>
+                                </ul>
+                            @endif
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="d-flex text-start px-5 ms-4">
-            <small class="text-muted fw-light"><i
+        <div class="d-flex text-start px-5 ms-4 mb-2">
+            <small class="text-muted fw-light ms-3"><i
                     class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
         </div>
     @endforeach
@@ -55,7 +90,6 @@
     $('#body').emojioneArea({
         pickerPosition: 'bottom'
     });
-
 
     $(function() {
         $('#comment-form-{{ $post->id }}').submit(function(event) {
@@ -88,6 +122,10 @@
 </script>
 
 <style scoped>
+    .show {
+        opacity: 1;
+    }
+
     textarea {
         resize: vertical;
         overflow: auto;
