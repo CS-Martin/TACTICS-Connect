@@ -1,7 +1,7 @@
 {{-- Comments contents here --}}
 <div class="comments-section mb-3">
     @foreach ($post->comments as $comment)
-        <div class="d-flex mb-2 w-75">
+        <div class="d-flex w-75">
             <div class="card-profile ms-3">
                 @if ($comment->user && $comment->user->profile_picture)
                     <img src="{{ asset('storage/' . $comment->user->profile_picture) }}"
@@ -11,10 +11,10 @@
                 @endif
 
             </div>
-            <div class="comments rounded-pill px-4 d-flex justify-content-between align-items-center w-100">
+            <div class="comments rounded-pill ms-3 px-4 d-flex justify-content-between align-items-center w-100">
                 <div>
                     {{-- Comment body goes here --}}
-                    <p class="mb-0">{{ $comment->body }}</p>
+                    <p class="mb-0 fw-normal">{{ $comment->body }}</p>
                 </div>
                 <div>
                     {{-- Edit and delete buttons --}}
@@ -26,8 +26,9 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex text-start px-5 ms-5">
-            <small class="text-muted">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
+        <div class="d-flex text-start px-5 ms-4">
+            <small class="text-muted fw-light"><i
+                    class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
         </div>
     @endforeach
 </div>
