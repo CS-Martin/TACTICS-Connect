@@ -256,23 +256,37 @@
                                                     </div>
                                                 </div>
 
+                                                {{-- Like section --}}
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex justify-content-center align-items-center">
-                                                        @if (!isset($_COOKIE['liked_post_' . $post->id]))
-                                                            <form action="{{ route('posts.like', $post->id) }}" class="mb-0"
+                                                        @if (!session()->has('liked_post_' . $post->id))
+                                                            <form action="{{ route('posts.like', $post->id) }}"
+                                                                class="m-0"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <button type="submit"
-                                                                    class="rounded-circle border-0 fs-4 like-btn me-3 p-2">
+                                                                    class="rounded-circle border-0 fs-4 like-btn d-flex me-3 p-2">
                                                                     <i class="fa-regular fa-thumbs-up"></i>
                                                                 </button>
                                                             </form>
+                                                        @else
+                                                            <form action="{{ route('posts.unlike', $post->id) }}"
+                                                                class="m-0" 
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit"
+                                                                    class="rounded-circle border-0 fs-4 unlike-btn d-flex me-3 p-2">
+                                                                    <i class="fa-regular fa-thumbs-down"></i>
+                                                                </button>
+                                                            </form>
                                                         @endif
-                                                        <p class="fw-normal">{{ $post->likes }}</p>
+
+                                                        <p class="m-0 fw-normal">{{ $post->likes }}</p>
                                                     </div>
 
-                                                    {{-- Comment button --}}
+                                                    {{-- Comment section --}}
                                                     <div class="d-flex">
                                                         <div class="me-3">
                                                             <button id="comment-button-{{ $post->id }}"
@@ -285,21 +299,20 @@
                                                                 {{-- <a href="/forum/comments/{{ $post->id }}" class="p-2 border-0 rounded-pill comment-btn px-4">Comment</a> --}}
                                                             </button>
                                                         </div>
+
                                                         <div class="">
-                                                            <div class="">
-                                                                @if ($bookmarks->where('post_id', $post->id)->count() > 0)
-                                                                    <button
-                                                                        class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2"
-                                                                        onclick="confirmRemove({{ $post->id }})"><i
-                                                                            id="bookmark-icon-{{ $post->id }}"
-                                                                            class="fa-solid fa-bookmark"></i></button>
-                                                                @else
-                                                                    <button
-                                                                        class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2"
-                                                                        onclick="addBookmark({{ $post->id }})"><i
-                                                                            class="fa-regular fa-bookmark"></i></button>
-                                                                @endif
-                                                            </div>
+                                                            @if ($bookmarks->where('post_id', $post->id)->count() > 0)
+                                                                <button
+                                                                    class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2"
+                                                                    onclick="confirmRemove({{ $post->id }})"><i
+                                                                        id="bookmark-icon-{{ $post->id }}"
+                                                                        class="fa-solid fa-bookmark"></i></button>
+                                                            @else
+                                                                <button
+                                                                    class="bookmark-style rounded-circle border-0 fs-4 d-flex me-3 p-2"
+                                                                    onclick="addBookmark({{ $post->id }})"><i
+                                                                        class="fa-regular fa-bookmark"></i></button>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -316,6 +329,8 @@
                             aria-labelledby="list-comments-list">...</div>
                         <div class="tab-pane fade" id="list-likes" role="tabpanel"
                             aria-labelledby="list-likes-list">...</div>
+
+                        {{-- Bookmark tab --}}
                         <div class="tab-pane fade my-3" id="list-bookmarks" role="tabpanel"
                             aria-labelledby="list-bookmarks-list">
                             @if (count($bookmarks->where('user_id', auth()->user()->id)) == 0)

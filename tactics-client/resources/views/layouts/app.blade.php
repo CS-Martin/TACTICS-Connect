@@ -9,8 +9,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'TACTICS-Connect') }}</title>
-    {{-- Title Icon --}}
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/312249a238.js" crossorigin="anonymous"></script>
@@ -18,8 +16,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     {{-- for emojionepicker --}}
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" />
     <!-- Fonts -->
@@ -201,16 +198,15 @@
             $('.navbar').addClass('navbar-scroll');
             $('.logo').css('opacity', '1');
             $('.navbar').removeClass('navbar-transparent');
-
-        } else {
-            if (isForumPage) {
+            if (!isForumPage) {
                 $('.logo').css('opacity', '1');
-            } else {
+            }
+        } else {
+            $('.navbar').removeClass('navbar-scroll');
+            $('.navbar').addClass('navbar-transparent');
+            if (!isForumPage) {
                 $('.logo').css('opacity', '0');
             }
-            $('.navbar').removeClass('navbar-scroll');
-            $('.logo').css('opacity', '0');
-            $('.navbar').addClass('navbar-transparent');
         }
     });
 </script>
