@@ -57,10 +57,13 @@
                         <li class="nav-item "><a href="#about_section"
                                 class="nav-link text-white {{ request()->is('/about') ? 'active' : '' }}">About Us</a>
                         </li>
-                        @if (Auth::check())
-                        <li class="nav-item "><a href="/forum"
-                                class="nav-link text-white {{ request()->is('forum') ? 'active' : '' }}">Forum</a>
+                        <li class="nav-item "><a href="#officer_section"
+                                class="nav-link text-white {{ request()->is('/officers') ? 'active' : '' }}">Officers</a>
                         </li>
+                        @if (Auth::check())
+                            <li class="nav-item "><a href="/forum"
+                                    class="nav-link text-white {{ request()->is('forum') ? 'active' : '' }}">Forum</a>
+                            </li>
                         @endif
 
                         <!-- Authentication Links -->
@@ -212,7 +215,8 @@
         }
     });
 
-    if (window.location.href.indexOf("forum") > -1 || window.location.href.indexOf("profile") > -1) {
+    if (window.location.href.indexOf("forum") > -1 || window.location.href.indexOf("profile") > -1 || window.location
+        .href.indexOf("setting") > -1) {
         var isForumPage = $('body').hasClass('forum-container');
 
         $('.navbar').addClass('navbar-scroll');
@@ -222,8 +226,6 @@
             $('.logo').css('opacity', '1');
         }
     }
-
-    
 </script>
 <style scoped>
     body {
